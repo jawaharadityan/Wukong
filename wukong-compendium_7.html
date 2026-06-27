@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>诸神录 · Compendium of Yaoguai Kings</title>
+<style>
+:root{
+  --ink:#0B0C10;
+  --ink-2:#14161B;
+  --jade:#1B4332;
+  --jade-light:#2D6A4F;
+  --gold:#D4A24C;
+  --gold-bright:#F0C674;
+  --bone:#F2EDE4;
+  --bone-dim:#B8B2A6;
+  --cinnabar:#9B2C2C;
+  --cinnabar-bright:#D14848;
+  --glass:rgba(242,237,228,0.06);
+  --glass-border:rgba(242,237,228,0.12);
+  --r-lg:28px;
+  --r-md:20px;
+  --r-sm:14px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--bone);
+  font-family:-apple-system,'SF Pro Text',"Inter",system-ui,sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+@font-face{
+  font-family:'DisplaySerif';
+  src:local('Songti SC'),local('STSong'),local('Noto Serif SC');
+}
+.display{
+  font-family:Georgia,'Songti SC','Noto Serif SC',serif;
+  font-weight:700;
+  letter-spacing:-0.01em;
+}
+::-webkit-scrollbar{width:0;height:0;}
+
+/* ===== Background atmosphere ===== */
+.atmosphere{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212,162,76,0.12), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 80%, rgba(27,67,50,0.25), transparent 60%),
+    var(--ink);
+}
+.heritage-art{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url('https://cdn2.picryl.com/photo/1824/01/01/the-monkey-king-songoku-from-the-chinese-novel-journey-to-the-west-b0ac5a-1024.jpg');
+  background-size:cover;
+  background-position:center 20%;
+  opacity:0.10;
+  filter:sepia(40%) saturate(70%) brightness(0.7);
+  mix-blend-mode:luminosity;
+}
+@media(max-width:640px){
+  .heritage-art{opacity:0.07;background-position:center 10%;}
+}
+.grain{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===== Staff watermark (original illustration, not game art) ===== */
+.staff-watermark{
+  position:fixed;top:0;right:0;z-index:0;pointer-events:none;
+  width:min(70vw,640px);height:100vh;opacity:0.16;
+  display:flex;align-items:center;justify-content:center;
+  transform:translateX(18%);
+}
+.staff-watermark svg{width:100%;height:auto;max-height:90vh;}
+@media(max-width:640px){
+  .staff-watermark{opacity:0.10;width:90vw;transform:translateX(28%);}
+}
+
+/* ===== Top nav (iOS style) ===== */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;
+  backdrop-filter:blur(20px) saturate(150%);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  background:rgba(11,12,16,0.72);
+  border-bottom:1px solid var(--glass-border);
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-mark{
+  width:30px;height:30px;border-radius:9px;
+  background:linear-gradient(145deg,var(--gold-bright),var(--cinnabar));
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;color:var(--ink);
+}
+.brand-text{font-size:14px;font-weight:600;letter-spacing:0.02em;}
+.brand-text small{display:block;font-size:10px;color:var(--bone-dim);font-weight:400;letter-spacing:0.08em;}
+.nav-search{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--glass);border:1px solid var(--glass-border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--bone-dim);
+}
+
+/* ===== Hero ===== */
+.hero{
+  position:relative;z-index:2;
+  min-height:92vh;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;
+  padding:90px 24px 60px;
+}
+.hero-eyebrow{
+  font-size:12px;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:24px;height:1px;background:var(--gold);opacity:0.6;}
+.hero h1{
+  font-size:clamp(2.6rem,9vw,4.6rem);
+  line-height:0.98;
+  margin:0 0 18px;
+  background:linear-gradient(180deg,var(--bone) 30%, var(--gold-bright) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{
+  max-width:480px;font-size:16px;line-height:1.6;color:var(--bone-dim);margin:0 0 36px;
+}
+.hero-stats{
+  display:flex;gap:28px;margin-bottom:40px;
+}
+.hero-stat{text-align:center;}
+.hero-stat .n{font-size:28px;font-weight:800;color:var(--gold-bright);font-family:Georgia,serif;}
+.hero-stat .l{font-size:11px;color:var(--bone-dim);letter-spacing:0.05em;text-transform:uppercase;}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:15px 28px;border-radius:100px;
+  background:var(--bone);color:var(--ink);font-weight:600;font-size:15px;
+  text-decoration:none;
+  box-shadow:0 8px 30px rgba(212,162,76,0.25);
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.hero-cta:active{transform:scale(0.95);}
+.scroll-hint{
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  font-size:10px;color:var(--bone-dim);letter-spacing:0.15em;text-transform:uppercase;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:bob 2.4s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+
+/* ===== Stance selector (signature element) ===== */
+.stance-section{padding:50px 20px 30px;position:relative;z-index:2;}
+.section-head{margin-bottom:24px;}
+.section-head .eyebrow{font-size:11px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;font-weight:600;}
+.section-head h2{font-size:26px;margin:6px 0 8px;}
+.section-head .sub{font-size:13.5px;color:var(--bone-dim);line-height:1.55;max-width:520px;}
+
+.stance-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;}
+.stance-card{
+  position:relative;border-radius:var(--r-md);
+  padding:18px 12px;text-align:center;cursor:pointer;
+  background:var(--glass);border:1px solid var(--glass-border);
+  transition:all .35s cubic-bezier(.34,1.2,.64,1);
+}
+.stance-card.active{
+  background:linear-gradient(160deg, rgba(212,162,76,0.18), rgba(212,162,76,0.04));
+  border-color:rgba(212,162,76,0.5);
+  transform:translateY(-4px);
+}
+.stance-icon-wrap{
+  position:relative;
+  width:56px;height:56px;margin:0 auto 10px;border-radius:18px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg, rgba(240,198,116,0.32), rgba(212,162,76,0.12));
+  backdrop-filter:blur(12px) saturate(160%);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);
+  border:1px solid rgba(255,255,255,0.18);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.3),
+    inset 0 -6px 10px rgba(0,0,0,0.12),
+    0 6px 14px rgba(0,0,0,0.2);
+  overflow:visible;
+  transition:transform .35s cubic-bezier(.34,1.2,.64,1), box-shadow .35s ease;
+}
+.stance-icon-wrap::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:50%;
+  background:linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0));
+  border-radius:18px 18px 50% 50% / 18px 18px 100% 100%;
+  pointer-events:none;
+  z-index:2;
+}
+.stance-icon-wrap::after{
+  content:'';position:absolute;inset:-14px;border-radius:50%;
+  background:radial-gradient(circle, rgba(99,140,255,0.55), rgba(168,99,255,0.4) 45%, transparent 75%);
+  opacity:0;filter:blur(6px);
+  transition:opacity .4s ease;
+  pointer-events:none;
+  z-index:-1;
+}
+.stance-card:hover .stance-icon-wrap::after{opacity:1;}
+.stance-card:hover .stance-icon-wrap{
+  transform:translateY(-2px) scale(1.08);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.4),
+    inset 0 -6px 10px rgba(0,0,0,0.1),
+    0 4px 22px rgba(99,140,255,0.35),
+    0 4px 22px rgba(168,99,255,0.25);
+}
+.stance-card.active .stance-icon-wrap{transform:scale(1.06);}
+.stance-icon{position:relative;z-index:1;width:26px;height:26px;color:var(--gold-bright);filter:drop-shadow(0 1px 2px rgba(0,0,0,0.25));}
+
+/* ===== Monkey companion ===== */
+.monkey-companion{
+  position:fixed;
+  left:8px;
+  top:50vh;
+  z-index:60;
+  width:46px;height:46px;
+  pointer-events:auto;
+  cursor:pointer;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+  will-change:left, top;
+}
+.monkey-inner{
+  width:100%;height:100%;
+  transition:transform .12s ease-out;
+}
+.monkey-companion svg{width:100%;height:100%;display:block;}
+.monkey-companion.face-left .monkey-inner{transform:scaleX(-1);}
+
+/* idle bob */
+@keyframes monkeyIdle{
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-4px) rotate(-2deg);}
+}
+.monkey-companion.idle .monkey-inner{animation:monkeyIdle 1.8s ease-in-out infinite;}
+
+/* walking / running limb swing */
+@keyframes legSwingL{0%,100%{transform:rotate(28deg);}50%{transform:rotate(-28deg);}}
+@keyframes legSwingR{0%,100%{transform:rotate(-28deg);}50%{transform:rotate(28deg);}}
+@keyframes armSwingL{0%,100%{transform:rotate(-20deg);}50%{transform:rotate(20deg);}}
+@keyframes armSwingR{0%,100%{transform:rotate(20deg);}50%{transform:rotate(-20deg);}}
+.monkey-companion.walking .leg-l,
+.monkey-companion.running .leg-l,
+.monkey-companion.fleeing .leg-l{transform-origin:50px 78px;animation:legSwingL 0.4s ease-in-out infinite;}
+.monkey-companion.walking .leg-r,
+.monkey-companion.running .leg-r,
+.monkey-companion.fleeing .leg-r{transform-origin:62px 78px;animation:legSwingR 0.4s ease-in-out infinite;}
+.monkey-companion.running .leg-l,
+.monkey-companion.fleeing .leg-l{animation-duration:0.18s;}
+.monkey-companion.running .leg-r,
+.monkey-companion.fleeing .leg-r{animation-duration:0.18s;}
+.monkey-companion.walking .arm-l{transform-origin:38px 50px;animation:armSwingR 0.4s ease-in-out infinite;}
+.monkey-companion.walking .arm-r{transform-origin:74px 50px;animation:armSwingL 0.4s ease-in-out infinite;}
+.monkey-companion.fleeing .arm-l,
+.monkey-companion.fleeing .arm-r{transform-origin:38px 48px;animation:armSwingR 0.18s ease-in-out infinite;}
+
+/* staff swing attack */
+.monkey-staff{transform-origin:74px 52px;transform:rotate(70deg);transition:transform .08s ease-out;}
+@keyframes staffSwing{
+  0%{transform:rotate(70deg);}
+  35%{transform:rotate(-50deg);}
+  60%{transform:rotate(20deg);}
+  100%{transform:rotate(70deg);}
+}
+.monkey-companion.attacking .monkey-staff{animation:staffSwing 0.35s ease-in-out 2;}
+.monkey-companion.attacking .arm-r{transform-origin:74px 50px;animation:armSwingL 0.35s ease-in-out 2;}
+@keyframes attackHop{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+.monkey-companion.attacking .monkey-inner{animation:attackHop 0.35s ease-in-out 2;}
+
+/* scratching head — silly reaction */
+@keyframes scratchHead{
+  0%,100%{transform:rotate(0deg) translateY(0);}
+  20%{transform:rotate(-15deg) translateY(-6px);}
+  40%{transform:rotate(10deg) translateY(-2px);}
+  60%{transform:rotate(-12deg) translateY(-6px);}
+  80%{transform:rotate(8deg) translateY(-1px);}
+}
+.monkey-companion.scratch .arm-r{transform-origin:74px 50px;animation:scratchHead 0.6s ease-in-out infinite;}
+.monkey-companion.scratch .head{animation:monkeyIdle 0.6s ease-in-out infinite;}
+
+/* dizzy spin — silly reaction */
+@keyframes dizzySpin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+.monkey-companion.dizzy .monkey-inner{animation:dizzySpin 0.5s linear 3;}
+
+/* excited jump — silly reaction */
+@keyframes excitedJump{
+  0%,100%{transform:translateY(0) scale(1);}
+  30%{transform:translateY(-22px) scale(1.05,0.95);}
+  50%{transform:translateY(-26px) scale(0.95,1.08);}
+  70%{transform:translateY(-10px) scale(1.05,0.95);}
+}
+.monkey-companion.jump .monkey-inner{animation:excitedJump 0.55s ease-out 2;}
+
+/* dazed/excited markers */
+.monkey-stars{
+  position:absolute;top:-16px;left:50%;
+  transform:translateX(-50%);
+  font-size:14px;
+  opacity:0;
+  white-space:nowrap;
+  transition:opacity .2s ease;
+  pointer-events:none;
+}
+.monkey-companion.dizzy .monkey-stars,
+.monkey-companion.scratch .monkey-stars,
+.monkey-companion.fleeing .monkey-stars{opacity:1;}
+
+@media(max-width:640px){
+  .monkey-companion{width:36px;height:36px;}
+}
+.stance-card h3{font-size:14px;margin:0 0 4px;font-weight:700;}
+.stance-card p{font-size:10.5px;color:var(--bone-dim);margin:0;line-height:1.4;}
+.stance-note{
+  margin-top:18px;padding:16px 18px;border-radius:var(--r-sm);
+  background:var(--glass);border:1px solid var(--glass-border);
+  font-size:13px;line-height:1.6;color:var(--bone-dim);
+}
+.stance-note b{color:var(--bone);}
+
+/* ===== Chapter filter pills ===== */
+.filter-row{
+  display:flex;gap:8px;overflow-x:auto;padding:0 20px 4px;margin:30px 0 6px;
+  scroll-snap-type:x proximity;
+}
+.filter-row::-webkit-scrollbar{display:none;}
+.pill{
+  flex:0 0 auto;padding:9px 16px;border-radius:100px;font-size:12.5px;font-weight:600;
+  background:var(--glass);border:1px solid var(--glass-border);color:var(--bone-dim);
+  white-space:nowrap;cursor:pointer;transition:all .2s;
+  scroll-snap-align:start;
+}
+.pill.active{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+
+/* ===== Boss grid / cards ===== */
+.boss-section{padding:10px 20px 40px;position:relative;z-index:2;}
+.boss-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px;}
+.boss-card{
+  border-radius:var(--r-lg);
+  background:linear-gradient(160deg, rgba(242,237,228,0.05), rgba(242,237,228,0.015));
+  border:1px solid var(--glass-border);
+}
+.boss-card.hidden{display:none;}
+.boss-top{
+  padding:20px 20px 16px;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:14px;
+  cursor:pointer;
+}
+.boss-id{display:flex;align-items:center;gap:14px;}
+.boss-glyph{
+  position:relative;
+  flex:0 0 auto;width:52px;height:52px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;font-size:22px;
+  background:linear-gradient(160deg, rgba(45,106,79,0.35), rgba(27,67,50,0.18));
+  backdrop-filter:blur(12px) saturate(160%);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);
+  border:1px solid rgba(255,255,255,0.18);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.25),
+    inset 0 -6px 10px rgba(0,0,0,0.15),
+    0 6px 16px rgba(0,0,0,0.25);
+  overflow:visible;
+  transition:transform .35s cubic-bezier(.34,1.4,.64,1), box-shadow .35s ease;
+}
+.boss-glyph::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:50%;
+  background:linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0));
+  border-radius:16px 16px 50% 50% / 16px 16px 100% 100%;
+  pointer-events:none;
+  z-index:2;
+}
+.boss-glyph::after{
+  content:'';position:absolute;inset:-14px;border-radius:50%;
+  background:radial-gradient(circle, rgba(99,140,255,0.55), rgba(168,99,255,0.4) 45%, transparent 75%);
+  opacity:0;filter:blur(6px);
+  transition:opacity .4s ease;
+  pointer-events:none;
+  z-index:-1;
+}
+.boss-top:hover .boss-glyph::after{opacity:1;}
+.boss-top:hover .boss-glyph{
+  transform:translateY(-2px) scale(1.05);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.35),
+    inset 0 -6px 10px rgba(0,0,0,0.12),
+    0 4px 22px rgba(99,140,255,0.35),
+    0 4px 22px rgba(168,99,255,0.25);
+}
+.boss-card[data-difficulty="extreme"] .boss-glyph{background:linear-gradient(160deg, rgba(212,74,74,0.4), rgba(155,44,44,0.18));}
+.boss-card[data-difficulty="hard"] .boss-glyph{background:linear-gradient(160deg, rgba(201,127,62,0.38), rgba(138,85,39,0.16));}
+.tier-badge{
+  display:inline-block;font-size:9px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;
+  padding:2px 7px;border-radius:6px;margin-right:6px;vertical-align:middle;
+}
+.tier-badge.king{background:rgba(212,162,76,0.22);color:var(--gold-bright);}
+.tier-badge.chief{background:rgba(45,106,79,0.3);color:#7fd9a8;}
+.tier-badge.character{background:rgba(155,44,44,0.18);color:#ff9a9a;}
+.boss-name-wrap .chapter-tag{font-size:10.5px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;}
+
+/* ===== Boss icon (SVG, replaces plain glyph text) ===== */
+.boss-glyph svg{position:relative;z-index:1;width:28px;height:28px;color:var(--bone);filter:drop-shadow(0 1px 2px rgba(0,0,0,0.3));}
+.boss-card[data-difficulty="extreme"] .boss-glyph svg{color:#ffd9d9;}
+
+/* ===== Armory / Weapons section ===== */
+.armory-section{padding:10px 20px 50px;position:relative;z-index:2;}
+.weapon-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px;}
+.weapon-card{
+  border-radius:var(--r-md);
+  background:linear-gradient(160deg, rgba(242,237,228,0.05), rgba(242,237,228,0.015));
+  border:1px solid var(--glass-border);
+  padding:16px 18px;
+}
+.weapon-top{display:flex;align-items:center;gap:14px;margin-bottom:10px;}
+.weapon-icon{
+  position:relative;
+  flex:0 0 auto;width:46px;height:46px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg, rgba(240,198,116,0.4), rgba(212,162,76,0.18));
+  backdrop-filter:blur(12px) saturate(160%);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);
+  border:1px solid rgba(255,255,255,0.22);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.35),
+    inset 0 -6px 10px rgba(0,0,0,0.1),
+    0 6px 16px rgba(212,162,76,0.15);
+  overflow:visible;
+  transition:transform .35s cubic-bezier(.34,1.4,.64,1), box-shadow .35s ease;
+}
+.weapon-icon::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:50%;
+  background:linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+  border-radius:14px 14px 50% 50% / 14px 14px 100% 100%;
+  pointer-events:none;
+  z-index:2;
+}
+.weapon-icon::after{
+  content:'';position:absolute;inset:-12px;border-radius:50%;
+  background:radial-gradient(circle, rgba(99,140,255,0.55), rgba(168,99,255,0.4) 45%, transparent 75%);
+  opacity:0;filter:blur(6px);
+  transition:opacity .4s ease;
+  pointer-events:none;
+  z-index:-1;
+}
+.weapon-card:hover .weapon-icon::after{opacity:1;}
+.weapon-card:hover .weapon-icon{
+  transform:translateY(-2px) scale(1.05);
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.4),
+    inset 0 -6px 10px rgba(0,0,0,0.08),
+    0 4px 22px rgba(99,140,255,0.35),
+    0 4px 22px rgba(168,99,255,0.25);
+}
+.weapon-icon svg{position:relative;z-index:1;width:24px;height:24px;color:var(--ink);filter:drop-shadow(0 1px 1px rgba(255,255,255,0.2));}
+.weapon-name-wrap{flex:1;min-width:0;}
+.weapon-name-wrap h4{margin:0 0 3px;font-size:16px;font-family:Georgia,'Songti SC',serif;font-weight:700;}
+.rarity-pill{
+  display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:100px;
+
+}
+.rarity-common{background:rgba(184,178,166,0.18);color:#c9c4ba;}
+.rarity-uncommon{background:rgba(127,217,168,0.18);color:#7fd9a8;}
+.rarity-rare{background:rgba(110,168,255,0.18);color:#9bbfff;}
+.rarity-epic{background:rgba(186,120,255,0.18);color:#cfa3ff;}
+.rarity-legendary{background:rgba(212,162,76,0.22);color:var(--gold-bright);}
+.rarity-mythical{background:rgba(212,74,74,0.22);color:#ff9a9a;}
+.weapon-stats{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+.stat-chip{font-size:11px;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,0.04);color:var(--bone-dim);border:1px solid var(--glass-border);}
+.stat-chip b{color:var(--bone);}
+.weapon-effect{font-size:12.5px;line-height:1.6;color:#cfc9bd;margin:0 0 10px;}
+.weapon-source{font-size:11.5px;line-height:1.55;color:var(--bone-dim);padding:10px 12px;border-radius:var(--r-sm);background:rgba(212,162,76,0.06);border:1px solid rgba(212,162,76,0.12);}
+.weapon-source b{color:var(--gold-bright);}
+.boss-name-wrap h3{margin:2px 0 2px;font-size:19px;font-family:Georgia,'Songti SC',serif;font-weight:700;}
+.boss-name-wrap .loc{font-size:11.5px;color:var(--bone-dim);}
+.difficulty-badge{
+  flex:0 0 auto;padding:5px 11px;border-radius:100px;font-size:10px;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.04em;
+  background:rgba(255,255,255,0.08);color:var(--bone-dim);
+}
+.boss-card[data-difficulty="extreme"] .difficulty-badge{background:rgba(155,44,44,0.25);color:#ff8a8a;}
+.boss-card[data-difficulty="hard"] .difficulty-badge{background:rgba(201,127,62,0.2);color:#f0b87e;}
+.boss-card[data-difficulty="moderate"] .difficulty-badge{background:rgba(45,106,79,0.25);color:#7fd9a8;}
+
+.chevron{
+  width:22px;height:22px;color:var(--bone-dim);
+  transition:transform .35s cubic-bezier(.5,0,.2,1);flex:0 0 auto;margin-top:14px;
+}
+.boss-card.open .chevron{transform:rotate(180deg);}
+
+.boss-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .45s cubic-bezier(.5,0,.2,1);
+}
+.boss-card.open .boss-body{max-height:2400px;}
+.boss-body-inner{padding:0 20px 24px;}
+
+.desc{font-size:13.5px;line-height:1.65;color:#cfc9bd;margin:0 0 18px;}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.tag{
+  font-size:11px;padding:5px 10px;border-radius:8px;
+  background:rgba(212,162,76,0.12);color:var(--gold-bright);
+  border:1px solid rgba(212,162,76,0.2);font-weight:600;
+}
+.tag.danger{background:rgba(155,44,44,0.15);color:#ff9a9a;border-color:rgba(155,44,44,0.25);}
+
+.loadout-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.loadout-box{
+  background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);
+  border-radius:var(--r-sm);padding:12px 14px;
+}
+.loadout-box .lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:5px;}
+.loadout-box ul{margin:0;padding:0;list-style:none;}
+.loadout-box li{font-size:12px;color:#dcd6c9;line-height:1.55;padding-left:12px;position:relative;margin-bottom:3px;}
+.loadout-box li::before{content:'';position:absolute;left:0;top:8px;width:4px;height:4px;border-radius:50%;background:var(--gold);}
+
+.phase-block{margin-bottom:14px;}
+.phase-block .lbl{font-size:9.5px;text-transform:uppercase;letter-spacing:0.08em;color:#ff9a9a;font-weight:700;margin-bottom:6px;}
+.phase-block p{font-size:12.5px;color:#cfc9bd;line-height:1.6;margin:0;}
+
+.reward-strip{
+  display:flex;align-items:center;gap:10px;margin-top:14px;
+  padding:12px 14px;border-radius:var(--r-sm);
+  background:linear-gradient(120deg, rgba(212,162,76,0.08), transparent);
+  border:1px solid rgba(212,162,76,0.15);
+}
+.reward-strip .ic{font-size:18px;}
+.reward-strip .txt{font-size:12px;color:var(--bone-dim);line-height:1.5;}
+.reward-strip .txt b{color:var(--gold-bright);}
+
+/* ===== Footer ===== */
+.footer{
+  position:relative;z-index:2;padding:60px 24px 100px;text-align:center;
+  border-top:1px solid var(--glass-border);margin-top:40px;
+}
+.footer p{font-size:12px;color:var(--bone-dim);line-height:1.7;max-width:480px;margin:0 auto;}
+.footer .credit{margin-top:14px;font-size:11px;color:#6b6660;}
+
+/* ===== Bottom tab bar (iOS) ===== */
+.tabbar{
+  position:fixed;bottom:0;left:0;right:0;z-index:50;
+  display:flex;justify-content:space-around;
+  padding:10px 10px calc(10px + env(safe-area-inset-bottom));
+  backdrop-filter:blur(24px) saturate(160%);
+  -webkit-backdrop-filter:blur(24px) saturate(160%);
+  background:rgba(11,12,16,0.78);
+  border-top:1px solid var(--glass-border);
+}
+.tab{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--bone-dim);font-size:10px;font-weight:600;
+  background:none;border:none;padding:4px 16px;cursor:pointer;
+}
+.tab.active{color:var(--gold-bright);}
+.tab svg{width:21px;height:21px;}
+
+@media(min-width:680px){
+  .boss-grid{grid-template-columns:1fr 1fr;}
+  .loadout-grid{grid-template-columns:1fr 1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="atmosphere"></div>
+<div class="heritage-art"></div>
+<div class="grain"></div>
+<div class="staff-watermark">
+  <svg viewBox="0 0 400 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="staffBody" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F0C674"/>
+        <stop offset="45%" stop-color="#D4A24C"/>
+        <stop offset="100%" stop-color="#5a4220"/>
+      </linearGradient>
+      <radialGradient id="glowTop" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#F0C674" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#F0C674" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#F2EDE4"/>
+        <stop offset="50%" stop-color="#9B2C2C"/>
+        <stop offset="100%" stop-color="#F2EDE4"/>
+      </linearGradient>
+    </defs>
+
+    <!-- soft glow halo at top of staff -->
+    <circle cx="300" cy="80" r="130" fill="url(#glowTop)"/>
+
+    <!-- cloud wisps -->
+    <path d="M40 200c30-20 60-10 80 10 25-25 60-20 75 5-10 20-40 25-60 15-20 15-50 10-60-10-20 5-40-5-35-20z"
+          fill="#F2EDE4" opacity="0.5"/>
+    <path d="M20 650c35-18 70-8 90 12 28-22 65-15 80 8-12 22-45 25-65 14-22 16-55 8-65-12-22 6-45-4-40-22z"
+          fill="#F2EDE4" opacity="0.35"/>
+
+    <!-- main staff shaft, diagonal -->
+    <rect x="-40" y="60" width="36" height="760" rx="18"
+          transform="rotate(28 300 450)"
+          fill="url(#staffBody)" stroke="#0B0C10" stroke-width="2" stroke-opacity="0.3"/>
+
+    <!-- decorative rings along the shaft -->
+    <g transform="rotate(28 300 450)">
+      <rect x="-40" y="160" width="36" height="14" fill="url(#ringGrad)"/>
+      <rect x="-40" y="420" width="36" height="14" fill="url(#ringGrad)"/>
+      <rect x="-40" y="680" width="36" height="14" fill="url(#ringGrad)"/>
+    </g>
+
+    <!-- end caps -->
+    <g transform="rotate(28 300 450)">
+      <rect x="-46" y="44" width="48" height="22" rx="10" fill="#F2EDE4" opacity="0.9"/>
+      <rect x="-46" y="794" width="48" height="22" rx="10" fill="#F2EDE4" opacity="0.9"/>
+    </g>
+  </svg>
+</div>
+
+<nav class="topnav">
+  <div class="brand">
+    <div class="brand-mark">悟</div>
+    <div class="brand-text">Compendium<small>Black Myth: Wukong</small></div>
+  </div>
+  <div class="nav-search">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Journey to the West · Field Guide</div>
+  <h1 class="display">26 Kings<br>Stand Between<br>You &amp; Heaven</h1>
+  <p>Every Yaoguai King boss across all six chapters — their attacks, the gear that counters them, and the spells that turn an impossible fight into a fair one.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="n" id="statTotal">50</div><div class="l">Bosses Logged</div></div>
+    <div class="hero-stat"><div class="n">113</div><div class="l">Total in Game</div></div>
+    <div class="hero-stat"><div class="n">6</div><div class="l">Chapters</div></div>
+  </div>
+  <a href="#stances" class="hero-cta">Begin the Reckoning →</a>
+  <div class="scroll-hint">Scroll<br>↓</div>
+</section>
+
+<section class="stance-section" id="stances">
+  <div class="section-head">
+    <div class="eyebrow">Combat Foundation</div>
+    <h2 class="display">Choose Your Stance</h2>
+    <p class="sub">Every boss strategy below assumes you can flow between these three. Tap one to see how it shapes your approach to every fight on this page.</p>
+  </div>
+
+  <div class="stance-grid">
+    <div class="stance-card active" data-stance="smash">
+      <div class="stance-icon-wrap"><svg class="stance-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M5 9l7-7 7 7M3 19h18"/></svg></div>
+      <h3>Smash</h3>
+      <p>Highest per-hit damage. Breaks posture in 2–3 charged hits.</p>
+    </div>
+    <div class="stance-card" data-stance="pillar">
+      <div class="stance-icon-wrap"><svg class="stance-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v7M12 15v7M4.2 7l6 3.5M19.8 7l-6 3.5M4.2 17l6-3.5M19.8 17l-6-3.5"/></svg></div>
+      <h3>Pillar</h3>
+      <p>Plants the staff — fight with acrobatic kicks. Best mobility &amp; vault dodges.</p>
+    </div>
+    <div class="stance-card" data-stance="thrust">
+      <div class="stance-icon-wrap"><svg class="stance-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12h16M14 6l6 6-6 6"/></svg></div>
+      <h3>Thrust</h3>
+      <p>Fast pokes that build toward a guaranteed-hit finisher. Great vs. shielded foes.</p>
+    </div>
+  </div>
+
+  <div class="stance-note" id="stanceNote">
+    <b>Smash Stance —</b> the default recommendation throughout this guide. Charge attacks paired with Cloud Step (dodge-cancel into a charged hit) carry you through almost every fight on this list except Erlang and the Stone Monkey, who punish the read.
+  </div>
+</section>
+
+<section class="boss-section">
+  <div class="section-head">
+    <div class="eyebrow">The Bestiary</div>
+    <h2 class="display">Yaoguai Kings, by Chapter</h2>
+    <p class="sub">Tap any king to open their full dossier — moveset, the loadout that counters them, and what their fall grants you.</p>
+  </div>
+
+  <div class="filter-row" id="filterRow">
+    <div class="pill active" data-ch="all">All Kings</div>
+    <div class="pill" data-ch="1">Ch.1 — Black Wind Mtn</div>
+    <div class="pill" data-ch="2">Ch.2 — Yellow Wind</div>
+    <div class="pill" data-ch="3">Ch.3 — Pagoda Realm</div>
+    <div class="pill" data-ch="4">Ch.4 — Webbed Hollow</div>
+    <div class="pill" data-ch="5">Ch.5 — Flaming Mtn</div>
+    <div class="pill" data-ch="6">Ch.6 — Foothills</div>
+  </div>
+
+  <div class="filter-row" id="tierRow" style="margin-top:0;">
+    <div class="pill active" data-tier="all">All Tiers</div>
+    <div class="pill" data-tier="king">👑 Yaoguai Kings</div>
+    <div class="pill" data-tier="chief">⚔️ Yaoguai Chiefs</div>
+    <div class="pill" data-tier="character">🎭 Characters</div>
+  </div>
+
+  <div class="boss-grid" id="bossGrid"><!-- injected by JS --></div>
+</section>
+
+<section class="armory-section" id="armory">
+  <div class="section-head">
+    <div class="eyebrow">Sun Wukong's Arsenal</div>
+    <h2 class="display">The Staves</h2>
+    <p class="sub">The Destined One wields only staves — but 20 variants exist, from a plain willow branch to the legendary Jingubang itself. Tap any to see its full effect and how to unlock it.</p>
+  </div>
+
+  <div class="filter-row" id="rarityRow">
+    <div class="pill active" data-rarity="all">All Rarities</div>
+    <div class="pill" data-rarity="common">Common</div>
+    <div class="pill" data-rarity="uncommon">Uncommon</div>
+    <div class="pill" data-rarity="rare">Rare</div>
+    <div class="pill" data-rarity="epic">Epic</div>
+    <div class="pill" data-rarity="legendary">Legendary</div>
+    <div class="pill" data-rarity="mythical">Mythical</div>
+  </div>
+
+  <div class="weapon-grid" id="weaponGrid"><!-- injected by JS --></div>
+</section>
+
+<footer class="footer">
+  <p>Fan-made reference guide, in progress — <b style="color:var(--bone-dim)">65 of 113</b> bosses documented so far, growing chapter by chapter. <b style="color:var(--bone-dim)">Black Myth: Wukong</b> is a trademark of Game Science. All strategy notes are original summaries — no game text, art, or audio reproduced.</p>
+  <p class="credit">Built for travelers of the Five Hundred Years' Stone.</p>
+  <p class="credit">Background art: Yashima Gakutei, "The Monkey King Songokū" (c. 1824, Edo period) — public domain, courtesy of the Metropolitan Museum of Art.</p>
+</footer>
+
+<div class="monkey-companion idle" id="monkeyCompanion">
+  <span class="monkey-stars">✦ ✧ ✦</span>
+  <div class="monkey-inner">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <!-- tail -->
+    <path d="M68 60 Q90 55 88 30 Q86 12 70 14" stroke="#8a5a36" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <!-- body -->
+    <ellipse cx="50" cy="60" rx="16" ry="20" fill="#B5713F"/>
+    <ellipse cx="50" cy="64" rx="10" ry="13" fill="#E8C9A0"/>
+    <!-- legs -->
+    <g class="leg-l"><rect x="40" y="74" width="8" height="18" rx="4" fill="#8a5a36"/></g>
+    <g class="leg-r"><rect x="54" y="74" width="8" height="18" rx="4" fill="#8a5a36"/></g>
+    <!-- staff (behind right arm) -->
+    <g class="monkey-staff">
+      <rect x="72" y="20" width="5" height="48" rx="2.5" fill="#D4A24C" stroke="#7a4a18" stroke-width="1"/>
+      <rect x="70" y="18" width="9" height="6" rx="2" fill="#F0C674"/>
+      <rect x="70" y="64" width="9" height="6" rx="2" fill="#F0C674"/>
+    </g>
+    <!-- arms -->
+    <g class="arm-l"><rect x="30" y="48" width="8" height="20" rx="4" fill="#8a5a36"/></g>
+    <g class="arm-r"><rect x="64" y="48" width="8" height="20" rx="4" fill="#8a5a36"/></g>
+    <!-- head -->
+    <g class="head">
+      <circle cx="50" cy="36" r="18" fill="#B5713F"/>
+      <ellipse cx="50" cy="40" rx="11" ry="9" fill="#E8C9A0"/>
+      <circle cx="34" cy="30" r="6" fill="#B5713F"/>
+      <circle cx="66" cy="30" r="6" fill="#B5713F"/>
+      <circle cx="34" cy="30" r="3" fill="#E8C9A0"/>
+      <circle cx="66" cy="30" r="3" fill="#E8C9A0"/>
+      <circle cx="44" cy="35" r="2.2" fill="#1a1410"/>
+      <circle cx="56" cy="35" r="2.2" fill="#1a1410"/>
+      <ellipse cx="50" cy="42" rx="3" ry="2" fill="#7a4a2a"/>
+    </g>
+  </svg>
+  </div>
+</div>
+
+<nav class="tabbar">
+  <button class="tab active" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+    Home
+  </button>
+  <button class="tab" onclick="document.querySelector('.boss-section').scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 4v16"/></svg>
+    Bosses
+  </button>
+  <button class="tab" onclick="document.getElementById('armory').scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="18" y2="21" stroke-linecap="round"/><circle cx="6" cy="3" r="2"/><circle cx="18" cy="21" r="2"/></svg>
+    Armory
+  </button>
+</nav>
+
+
+<script>
+const BOSSES = [
+  // ===== CHAPTER 1 — Black Wind Mountain =====
+  {
+    ch:1, tier:"king", name:"Lingxuzi", glyph:"狼", difficulty:"moderate",
+    loc:"Forest of Wolves, Guanyin Temple",
+    desc:"A massive wolf yaoguai with a deceptively simple kit: a quick two-part swipe combo and a long telegraphed charging bite. He's the gentlest King in the game and exists mostly to teach you spacing before the real tests begin.",
+    tags:["Wolf","Melee","Tutorial-tier"],
+    weapons:["Basic upgraded staff is enough — no rush for a new weapon"],
+    armor:["Starting gear is fine; save materials for Black Bear Guai"],
+    spells:["Immobilize (freezes him mid-charge for a free combo)","Rock Solid if you want to practice parry timing safely"],
+    other:["Red Tides transformation if already unlocked — easy free damage"],
+    phases:[{t:"Single phase",p:"No major escalation. Punish the bite's recovery with a full combo."}],
+    reward:"Drops materials toward your first weapon upgrade tier."
+  },
+  {
+    ch:1, tier:"king", name:"Red Loong", glyph:"龙", difficulty:"hard",
+    loc:"Forest of Wolves, Loong Claw Grove (secret)",
+    desc:"A secret optional King, only reachable after collecting the Loong Scale in Chapter 2 and returning to interact with the waterfall outside the Forest Keeper's Shrine. Fast, serpentine, and punishes greed hard.",
+    tags:["Secret Boss","Loong","Requires Ch.2 item"],
+    weapons:["Any fully-upgraded Ch.1 staff variant"],
+    armor:["Full Black Wind Mountain set for the defense bonus"],
+    spells:["Cloud Step for the dash-attack mixups","Immobilize to punish his aerial recovery"],
+    other:["Best attempted after Black Wind King, not before — you'll have the Spells to actually punish openings"],
+    phases:[{t:"Single phase, high aggression",p:"He rarely gives long openings — bait his lunge, then charge-attack the landing recovery."}],
+    reward:"Unique Loong-themed curio; bragging rights for finding a secret King this early."
+  },
+  {
+    ch:1, tier:"king", name:"Elder Jinchi", glyph:"僧", difficulty:"moderate",
+    loc:"Ancient Guanyin Temple, Grand Chamber",
+    desc:"A corrupted old monk whose greed for the cassock has twisted him into a yaoguai. Mixes monk-staff melee with sudden fire bursts once enraged.",
+    tags:["Fire","Monk","Story Boss"],
+    weapons:["Whichever staff variant you've upgraded first — damage type matters less than upgrade level here"],
+    armor:["Anything with fire resistance if you've found it yet"],
+    spells:["Rock Solid to parry his staff combos and open a counter window","A Pluck of Many for burst damage in his enrage phase"],
+    other:["Keep distance once he ignites — his hitbox grows"],
+    phases:[
+      {t:"Phase 1 — Composed",p:"Standard monk-staff combos, well telegraphed."},
+      {t:"Phase 2 — Enraged",p:"Gains fire AoE bursts around melee swings; dodge outward, not into him."}
+    ],
+    reward:"Story-critical drop; opens the path toward Black Wind Cave."
+  },
+  {
+    ch:1, tier:"king", name:"Black Wind King", glyph:"熊", difficulty:"hard",
+    loc:"Black Wind Cave, Cave Interior",
+    desc:"A cunning bear spirit fighting in a cramped, smoke-filled cave. Favors grapples and sudden lunges that are hard to read in the low visibility.",
+    tags:["Bear","Grapple","Confined Arena"],
+    weapons:["Upgraded starting staff, ideally enhanced once via the Forest Keeper's smith"],
+    armor:["Whatever you've crafted from Black Wind Mountain materials"],
+    spells:["Immobilize is excellent here — it cancels his grapple startup entirely","Cloud Step to reposition out of the smoke"],
+    other:["Use the cave's pillars to break line of sight if you need a breather"],
+    phases:[{t:"Single phase",p:"His grapple has a long wind-up; perfect-dodge it for a guaranteed charge attack."}],
+    reward:"Leads directly into the Black Bear Guai finale — stock medicine before pushing on."
+  },
+  {
+    ch:1, tier:"king", name:"Black Bear Guai", glyph:"罴", difficulty:"hard",
+    loc:"Black Wind Cave, Bodhi Peak",
+    desc:"The Chapter 1 finale and the first real wall most players hit. Colossal size makes him hard to dodge, and his second phase turns the arena into a burning floor that inflicts damage over time if you linger.",
+    tags:["Fire","Final Boss · Ch.1","AoE Floor Hazard"],
+    weapons:["Fully upgraded Tier-1 staff — don't walk in under-leveled"],
+    armor:["Complete one full Black Wind Mountain armor set before this fight"],
+    spells:["Immobilize to stop his overhead slam mid-animation","Rock Solid to parry the ground-pound and open a long counter window"],
+    other:["Craft Evil Repelling Medicament if available — the burn DoT in phase 2 adds up fast","Keep circling rather than backing straight away from the inferno floor"],
+    phases:[
+      {t:"Phase 1 — Brute force",p:"Huge, slow swings. Dodge sideways, not backward — his hitboxes extend further forward than they look."},
+      {t:"Phase 2 — Inferno",p:"The arena ignites. Track safe ground between flame patches and bait his slam before punishing."}
+    ],
+    reward:"First Relic of the game, plus the spirit/transformation tied to this fight."
+  },
+
+  // ===== CHAPTER 1 — Yaoguai Chiefs =====
+  {
+    ch:1, tier:"chief", name:"Bullguard", glyph:"牛", difficulty:"easy",
+    loc:"Forest of Wolves, Front Hills",
+    desc:"The very first boss of the game — a horned guai wielding a massive axe. His attacks are slow and easily read, making this an ideal place to learn the dodge-and-punish rhythm the whole game is built on. This is also where you first learn the Immobilize spell, unlocked automatically once his health drops to 50%.",
+    tags:["Tutorial Boss","Axe","Teaches Immobilize"],
+    weapons:["Default starting staff is more than sufficient"],
+    armor:["Starting gear"],
+    spells:["Immobilize — unlocked mid-fight at 50% HP; use it immediately to finish him off"],
+    other:["Charge your heavy attack from a safe distance until the staff glows, then release to stagger him — this throws him back and opens a long punish window"],
+    phases:[
+      {t:"Above 50% HP",p:"Slow overhand axe slams and a leaping version of the same attack. Dodge sideways or back up the instant his axe goes overhead."},
+      {t:"Below 50% HP",p:"Cutscene grants Immobilize — use it freely to close out the fight."}
+    ],
+    reward:"394 Will, 2 Yarn, and the Immobilize spell."
+  },
+  {
+    ch:1, tier:"chief", name:"Guangzhi", glyph:"僧", difficulty:"moderate",
+    loc:"Forest of Wolves, Outside the Forest",
+    desc:"A wolf-headed monk-instructor turned yaoguai, wielding a fiery double-headed spear in long, punishing combo strings. Landing multiple hits on you sets you on fire — dodging repeatedly is the only way to put it out.",
+    tags:["Fire","Spear","Multi-hit Combos"],
+    weapons:["Upgraded starting staff"],
+    armor:["Whatever's available from Forest of Wolves materials"],
+    spells:["Immobilize — use it the instant it's off cooldown, then chain a full quick-attack combo immediately after"],
+    other:["Never try to trade hits mid-combo — let him finish his string completely, then punish only after the final thrust","If you catch fire, dodge several times in a row rather than tanking the burn"],
+    phases:[{t:"Single phase",p:"Fire Spear Combo ends in a thrust — that's your window. His spinning spear attack should be dodged sideways, and his double-thrust needs two dodges in sequence."}],
+    reward:"567 Will, 1 Stone Spirit, and the Red Tides spell."
+  },
+  {
+    ch:1, tier:"chief", name:"Guangmou", glyph:"蛇", difficulty:"moderate",
+    loc:"Bamboo Grove, Snake Trail",
+    desc:"A corrupt monk with a snake-themed kit — ranged spirit orbs, poison breath, and a signature move where he summons four serpents in a square formation that continuously spray venom while he keeps attacking independently.",
+    tags:["Poison","Ranged","Snake Summons"],
+    weapons:["Upgraded starting staff"],
+    armor:["No special requirement"],
+    spells:["Immobilize after an opening heavy attack, followed by a full quick-combo"],
+    other:["If you've already beaten Guangzhi, transform into him here — it strips nearly half of Guangmou's health and is the single best tool in this fight","When the four snakes spawn, each dies in one hit — clear them quickly rather than tanking their poison spray","Watch for his teleport-behind-you after the orb flurry; it usually telegraphs a follow-up you need to be ready to dodge"],
+    phases:[{t:"Single phase",p:"Orb Flurry, Poison Breath, and Wind Ball are all dodgeable at range. At 50% HP he adds the four-snake summon — prioritize the snakes, don't ignore them for boss damage."}],
+    reward:"528 Will, 1 Stone Spirit, Blood of the Iron Bull, and the Guangmou Spirit."
+  },
+  {
+    ch:1, tier:"chief", name:"Baw-Li-Guhh-Lang", glyph:"蛙", difficulty:"easy",
+    loc:"Bamboo Grove, Snake Trail",
+    desc:"A giant frog yaoguai and one of the easiest fights in the entire game. Weak attacks, minimal damage, and a clear weak point on the head make this a free win.",
+    tags:["Easiest Boss","Frog","Free Win"],
+    weapons:["Anything — running heavy attacks one-shot most of his openings"],
+    armor:["No requirement"],
+    spells:["Any spell works; this fight doesn't demand a specific loadout"],
+    other:["Attack the head from the front whenever possible","His punch combo ends in a double slam that leaves him open afterward"],
+    phases:[{t:"Single phase",p:"Leaping belly-flop, single punches, and a 3-punch combo. All are slow and clearly telegraphed."}],
+    reward:"384 Will, 1 Stone Spirit, a Tadpole, and the Baw-Li-Guhh-Lang Spirit."
+  },
+
+  // ===== CHAPTER 1 — Characters =====
+  {
+    ch:1, tier:"character", name:"Whiteclad Noble", glyph:"白", difficulty:"moderate",
+    loc:"Bamboo Grove, Marsh of White Mist",
+    desc:"The first named Character boss of the game — a serpent-natured youth in white robes fighting with a spear, mixing dash-stabs, hopping combos, and a wide spear-swing that leaves an aftershock on the ground.",
+    tags:["Character Boss","Spear","Early Game"],
+    weapons:["Upgraded starting staff"],
+    armor:["No special requirement"],
+    spells:["Immobilize to interrupt his hop-stab combo"],
+    other:["His Dash Stab and Spear Throw both telegraph with a hop backward first — that's your cue to ready a sideways dodge","When he passes the spear hand-to-hand before his wide swing, back away — the aftershock has more range than the swing itself"],
+    phases:[{t:"Single phase",p:"Dash Stab, Swing Combo, Spear Throw, Hop Stab Combo, and Spear Swing — all individually dodgeable once you isolate the tells."}],
+    reward:"686 Will, a Stone Spirit, and a Jade Fang."
+  },
+  {
+    ch:1, tier:"character", name:"Keeper of Black Wind Mountain", glyph:"守", difficulty:"none",
+    loc:"Black Wind Cave",
+    desc:"Not a fight — a kindly monk NPC met early in Chapter 1 who acts as a guide and mentor through the Black Wind Mountain region. He grants the Incense Trail Talisman (teleport back to your last shrine) and later the Cloud Step spell after the Black Wind King falls.",
+    tags:["NPC","Non-Combat","Quest Giver"],
+    weapons:[],
+    armor:[],
+    spells:["Grants Cloud Step after you defeat the Black Wind King nearby"],
+    other:["Talk to him before pushing deeper into Black Wind Cave — he flags the Guanyin Temple objective and hands over the Incense Trail Talisman"],
+    phases:[],
+    reward:"Incense Trail Talisman and, later, the Cloud Step spell — no combat required."
+  },
+
+  // ===== CHAPTER 2 — Yellow Wind Formation =====
+  {
+    ch:2, tier:"king", name:"Tiger Vanguard", glyph:"虎", difficulty:"hard",
+    loc:"Crouching Tiger Temple, Temple Entrance",
+    desc:"The first true skill-check boss. Wields claws and a katana with relentless combo strings — with the limited spells you'll have at this point, one mistake compounds fast. The fight is fundamentally about managing greed.",
+    tags:["Skill Check","Dual-wield","No Room for Error"],
+    weapons:["Highest-tier staff you can afford by this point in Chapter 2"],
+    armor:["Crouching Tiger set pieces if found in the temple grounds"],
+    spells:["Rock Solid — essential, his combos are built to be parried mid-string","Cloud Step to bail out of overextended combos"],
+    other:["Stay defensive until you've memorized one full combo string — don't chase damage early"],
+    phases:[{t:"Single phase, escalating aggression",p:"Take the opportunities he gives you rather than forcing your own — he punishes impatience severely."}],
+    reward:"Grants access deeper into Crouching Tiger Temple and the Wind Tamer questline."
+  },
+  {
+    ch:2, tier:"king", name:"Stone Vanguard", glyph:"岩", difficulty:"moderate",
+    loc:"Fright Cliff, Rock Clash Platform",
+    desc:"A hulking golem, considerably slower than the bosses around it — which paradoxically makes it easy to dodge too early. Beware its rear sweep when attacking from behind.",
+    tags:["Golem","Slow","Punishes Over-eager Dodges"],
+    weapons:["Any staff with good charge-attack scaling"],
+    armor:["Whatever's on hand — this fight is about positioning, not gear"],
+    spells:["Cloud Step + charge attack loop works cleanly here"],
+    other:["Stay at range and bait the leap attack rather than staying close, where its AoE punishes you"],
+    phases:[{t:"Single phase",p:"Wait a beat longer than instinct says before dodging — he's slower than he looks."}],
+    reward:"Clears the way to the Rock Clash Platform's hidden vault."
+  },
+  {
+    ch:2, tier:"king", name:"Black Loong", glyph:"黑龍", difficulty:"hard",
+    loc:"Fright Cliff, Hidden Loong Cavern",
+    desc:"An optional Loong King hidden in a cavern off the main path. Use the surrounding stones to your advantage — jump onto them and charge-attack the instant he unleashes his shockwave slam.",
+    tags:["Secret Boss","Loong","Environmental Tech"],
+    weapons:["A fully-enhanced Chapter 2 staff variant recommended"],
+    armor:["No specific set required, but higher defense helps absorb the shockwave chip damage"],
+    spells:["Cloud Step to reach the elevated stones quickly between his attacks"],
+    other:["Jump onto the platform stones the moment he winds up his shockwave — this dodges it for free and sets up a clean punish"],
+    phases:[{t:"Single phase",p:"Loop: bait shockwave → stone-jump dodge → charge attack on landing."}],
+    reward:"Rare materials exclusive to this hidden encounter."
+  },
+  {
+    ch:2, tier:"king", name:"Fuban", glyph:"蟲", difficulty:"moderate",
+    loc:"Kingdom Of Sahālī, Sandgate Bound",
+    desc:"A huge beetle yaoguai who also appears as a summoned attack during the Yellow Wind Sage fight. On his own, his body-slam is the main threat — telegraphed clearly by a camera shift before it lands.",
+    tags:["Beetle","Body Slam","Linked to Yellow Wind Sage"],
+    weapons:["Standard Chapter 2 staff is sufficient"],
+    armor:["No special requirement"],
+    spells:["Immobilize during his slam wind-up for a guaranteed punish"],
+    other:["When the camera shifts upward, that's your cue to dodge sideways immediately"],
+    phases:[{t:"Single phase",p:"Mostly a single dangerous slam attack repeated — learn the camera tell and the fight is trivial."}],
+    reward:"Contributes to unlocking the Wind Tamer vessel questline."
+  },
+  {
+    ch:2, tier:"king", name:"Yellow Wind Sage", glyph:"風", difficulty:"extreme",
+    loc:"Crouching Tiger Temple, Cellar",
+    desc:"The Chapter 2 finale and widely cited as the hardest boss faced so far. One health bar, two phases (the second starting at 50%), with a slow-moving tornado and a Fuban body-slam summon layered on top of his wind-blade combos.",
+    tags:["Final Boss · Ch.2","Wind","2 Phases","Summons Fuban"],
+    weapons:["Fully upgraded staff with every available Chapter 2 enhancement"],
+    armor:["Complete Crouching Tiger / Yellow Wind set for defense bonuses"],
+    spells:["Rock Solid — staggers him when you block his ground-stomp, opening a free counter","Wind Tamer vessel — dispels his tornado and stuns him for 5–10 seconds; build your loadout around having this off cooldown as often as possible","Red Tides or Azure Dust transformation both work: Red Tides for burn damage, Azure Dust for tankiness and knockdown on charged hits"],
+    other:["Get the Wind Tamer first — finish the Yellow-Robed Squire's questline into the Kingdom of Sahālī secret area and beat Tiger Vanguard there to unlock it","Before the fight: visit Xu Dog at the Cellar shrine, trade Mind Cores for Defense-boosting Celestial Medicines, then craft and drink Longevity Decoction, Evil Repelling Medicament, and Tiger Subduing Pellets","Dodge his triple wind-blade volley by perfect-dodging as each blade closes, or hop over horizontal ones","When he plants his staff and raises his arms, the tornado is coming — start circling away immediately"],
+    phases:[
+      {t:"Phase 1 (100–50%)",p:"Ranged wind-blade combos at distance, melee staff combos up close. Both ground-pound openers are punishable on block with Rock Solid."},
+      {t:"Phase 2 (below 50%)",p:"Adds the slow-tracking tornado and periodic Fuban body-slam summons. Use Wind Tamer the instant it's off cooldown to dispel the tornado and stun him."}
+    ],
+    reward:"The Fuming Ears relic (choose one of three passive effects) — one of the best mid-game relics in the run."
+  },
+
+  // ===== CHAPTER 2 — Yaoguai Chiefs =====
+  {
+    ch:2, tier:"chief", name:"Lang-Li-Guhh-Baw", glyph:"蛙", difficulty:"easy",
+    loc:"Sandgate Village, Village Entrance — river pit below the wooden platform",
+    desc:"The first boss of Chapter 2 and a near-mirror of Chapter 1's Baw-Li-Guhh-Lang — another giant frog, this time with electric attacks layered onto the same leg and tongue combos. Easy if you remember the original's rhythm.",
+    tags:["Easy","Frog","Electric","Returning Pattern"],
+    weapons:["Anything — this fight doesn't demand a specific build"],
+    armor:["No special requirement"],
+    spells:["Any loadout works"],
+    other:["Same dodge timing as Baw-Li-Guhh-Lang from Chapter 1, just with an electric charge added to the punch combo"],
+    phases:[{t:"Single phase",p:"Leg sweeps, tongue lashes, and electrified punch combos — all slow and clearly telegraphed."}],
+    reward:"Contributes toward unlocking Evil Repelling Medicament and other Xu Dog-related rewards."
+  },
+  {
+    ch:2, tier:"chief", name:"Earth Wolf", glyph:"骸", difficulty:"easy",
+    loc:"Sandgate Village, Village Entrance — meadow beyond the locked gate",
+    desc:"A skeletal, almost un-wolflike guai guarding the gate opposite the Village Entrance shrine. Highly mobile with long dash attacks at range, but his moveset is otherwise unthreatening compared to surrounding bosses.",
+    tags:["Mobile","Skeletal","Gate Guardian"],
+    weapons:["Pillar Stance recommended for its mobility against his dashes"],
+    armor:["No special requirement"],
+    spells:["Immobilize to shut down his charge before it closes distance"],
+    other:["At range he dashes twice in a row — bait the second dash and punish the recovery","Up close his clawing combo is dodgeable to the side, opening a counter"],
+    phases:[{t:"Single phase",p:"Double charging dash at range, pawing combo up close. Defeating him unlocks the gate and a nearby horse NPC."}],
+    reward:"Opens the locked gate at Village Entrance; the Earth Wolf Spirit grants the Wild Rapture transformation (charge-and-stagger ability)."
+  },
+  {
+    ch:2, tier:"chief", name:"King of Flowing Sands & Second Prince of Flowing Sands", glyph:"鼠", difficulty:"moderate",
+    loc:"Sandgate Village, Valley of Despair",
+    desc:"The game's first true two-enemy boss fight — a diminutive rat King hurling rocks from atop pillars while his hulking son, the Second Prince, does the actual brawling. Killing order matters for a missable Spirit drop.",
+    tags:["Dual Boss","Father & Son","Missable Spirit"],
+    weapons:["Standard Chapter 2 staff"],
+    armor:["No special requirement"],
+    spells:["Immobilize on the Second Prince to create breathing room from the King's ranged interruptions"],
+    other:["Kill the King first — if the Second Prince dies first, you miss a Spirit drop tied to this encounter","Reduce the Second Prince to roughly half health before finishing the King, to limit how long you deal with the Prince's enrage afterward","Punish the Second Prince's thrust-starter combo by sidestepping right, then countering with a charged heavy attack","His mace-throw-into-wave and spinning-mace-into-AoE-slam both have a delayed second hit — dodge twice, not once"],
+    phases:[{t:"Dual-enemy encounter",p:"King stays at range atop pillars throwing rocks and interrupting; Second Prince handles the actual melee pressure. Separate them with positioning where possible."}],
+    reward:"Pungent Flesh Chunk (used to summon First Prince of Flowing Sands) plus standard Will and crafting materials."
+  },
+  {
+    ch:2, tier:"chief", name:"First Prince of Flowing Sands", glyph:"鼠", difficulty:"moderate",
+    loc:"Sandgate Village, Valley of Despair",
+    desc:"The towering older brother, summoned either by the King's blood sacrifice (who is then devoured by his own son) or directly if only the Second Prince was killed previously. A significant step up in scale and power from his sibling.",
+    tags:["Story Boss","Family Tragedy","Scaled-up Threat"],
+    weapons:["Upgraded Chapter 2 staff"],
+    armor:["No special requirement"],
+    spells:["Immobilize remains the most reliable tool to create attack windows"],
+    other:["Use the Wandering Wight Spirit or Azure Dust to headbutt/break a cracked wall in this arena during the fight — it leads to a hidden area with the Loong Scales key item"],
+    phases:[{t:"Single phase",p:"Heavier, more deliberate combos than the Second Prince — punish recoveries rather than trying to interrupt strings."}],
+    reward:"Story progression item; arena contains a breakable wall leading to the Loong Scales needed for Cyan Loong."
+  },
+  {
+    ch:2, tier:"chief", name:"Mad Tiger", glyph:"虎", difficulty:"moderate",
+    loc:"Sandgate Village, Bottom of the Well — secret boss via Old Rattle-Drum questline",
+    desc:"A secret optional Chief unlocked through the Old Rattle-Drum questline (obtained from Tiger's Acolyte). Hits hard with claw combos and can summon falling boulders via roar, but the falling debris is dodgeable with proper positioning.",
+    tags:["Secret Boss","Claws","Falling Debris","Requires Old Rattle-Drum"],
+    weapons:["Upgraded Chapter 2 staff"],
+    armor:["No special requirement"],
+    spells:["Cloud Step to reposition away from Echo Roar's falling boulders"],
+    other:["Use the Old Rattle-Drum at all three required locations (two in Sandgate Village, one in Yellow Wind Formation) to summon the ghost boy who opens the well","Boulders from Echo Roar fall in front of him — dodge to his side or run behind him to avoid them entirely","When he cracks his knuckles before the Swinging Combo, use that windup to run to the far end of the arena"],
+    phases:[{t:"Single phase",p:"Double/Triple Claw Swing, Echo Roar (falling boulders), Kick Combo, and Swinging Combo. All have clear tells once learned."}],
+    reward:"1,008 Will, a Stone Spirit, a Yaoguai Core, Blood of the Iron Bull, and the Mad Tiger Spirit."
+  },
+  {
+    ch:2, tier:"chief", name:"Tiger's Acolyte", glyph:"虎", difficulty:"easy",
+    loc:"Yellow Wind Formation, Windrest Hamlet",
+    desc:"A long-sword-wielding Chief with a deceptively small health pool. Opens with a leaping ground thrust that, once dodged, grants enough time to Immobilize and combo him down quickly.",
+    tags:["Sword","Small HP Pool","Quick Fight"],
+    weapons:["Standard Chapter 2 staff"],
+    armor:["No special requirement"],
+    spells:["Immobilize right after dodging his opening Leaping Ground Thrust, followed by a heavy attack combo","Clone spell (if available) to add pressure and close the fight out fast"],
+    other:["His sword combos are slow and predictable up close — plenty of room to dodge and counter"],
+    phases:[{t:"Single phase",p:"Leaping Ground Thrust opener, then standard 3–4 swing sword combos. Low overall health means an aggressive Immobilize-into-combo opener often ends the fight quickly."}],
+    reward:"777 Will, 2 Yarn, 2 Silk, the Old Rattle-Drum (unlocks Mad Tiger), and Blood of the Iron Bull."
+  },
+  {
+    ch:2, tier:"chief", name:"Gore-Eye Daoist", glyph:"道", difficulty:"moderate",
+    loc:"Yellow Wind Formation, Windseal Gate",
+    desc:"A lesser-known optional Chief encountered fairly late in Chapter 2. Leaves red damage puddles across the arena and telegraphs a dangerous charge-up with a red glow — positioning and patience matter more than raw aggression here.",
+    tags:["Red Puddles","Charge Attack","Easily Missed"],
+    weapons:["Standard Chapter 2 staff"],
+    armor:["No special requirement"],
+    spells:["Immobilize at the very start of the fight for an early advantage","Cloud Step or Rock Solid for the mobility/durability needed to navigate the puddles safely","Red Tides once he's out of his red-puddle zone, to burst him down at melee range"],
+    other:["Retreat the instant he starts glowing red and charging — this attack knocks back hard if it connects","Keep moving around red puddles rather than through them; check HP and heal before re-engaging at melee range"],
+    phases:[{t:"Single phase",p:"Alternates between puddle-zoning ranged pressure and a dangerous red charge-up. Disengage during the charge, then close in once he stops attacking."}],
+    reward:"Standard Will and crafting materials; clears the path toward Stone Vanguard's arena via the Windseal Gate route."
+  },
+  {
+    ch:2, tier:"chief", name:"Mother of Stones", glyph:"石", difficulty:"easy",
+    loc:"Fright Cliff, Squall Hideout",
+    desc:"A passive boss that is, quite literally, just a rock — three blue glowing crystals embedded in a stone formation. She never attacks or defends directly, instead summoning lesser rock enemies; clear those and the crystals become defenseless.",
+    tags:["Passive Boss","No Direct Attacks","Summons Adds"],
+    weapons:["Anything"],
+    armor:["No requirement"],
+    spells:["None required"],
+    other:["Defeat the summoned lesser rock enemies first — once they're cleared, the three crystals themselves can be destroyed freely"],
+    phases:[{t:"Single phase",p:"No direct boss attacks. Clear the summoned adds, then break the crystals."}],
+    reward:"Standard materials; located just before the Rockrest Flat shrine."
+  },
+  {
+    ch:2, tier:"chief", name:"Shigandang", glyph:"石", difficulty:"moderate",
+    loc:"Fright Cliff, Rock Clash Platform",
+    desc:"A secret boss requiring all six Buddha's Eyeballs scattered across Fright Cliff statues — a stout stone guardian whose attacks are heavily telegraphed but hit hard if misjudged.",
+    tags:["Secret Boss","Requires 6 Buddha's Eyeballs","Golem"],
+    weapons:["Same staff as the Stone Vanguard fight — no special counter needed"],
+    armor:["No special resistance required"],
+    spells:["Rock Solid to parry his ground slams for a big counter window"],
+    other:["Collect all six Buddha's Eyeballs from giant Buddha head statues around Fright Cliff and place them in the designated boulder to unlock this fight","Respect his range — he hits further than his wind-up suggests"],
+    phases:[{t:"Single phase",p:"Patient parry-counter loop beats panicked dodging, same as his Chapter 6 'Giant' counterpart but at a more forgiving scale."}],
+    reward:"Crafting materials toward Chapter 2's stone-themed gear."
+  },
+
+  // ===== CHAPTER 2 — Characters =====
+  {
+    ch:2, tier:"character", name:"Man-in-Stone", glyph:"人", difficulty:"easy",
+    loc:"Fright Cliff, Squall Hideout",
+    desc:"Starts as a passive NPC — deliver the Stone Essence to him and he bursts from the ground to attack. Despite a large health pool, his damage output is low and the fight is more a formality than a real test.",
+    tags:["NPC Turned Hostile","Large HP, Low Threat"],
+    weapons:["Anything"],
+    armor:["No requirement"],
+    spells:["Not required, but Immobilize speeds things up given his large HP pool"],
+    other:["Deliver the Stone Essence item to trigger the fight — there's no way to avoid combat once you do"],
+    phases:[{t:"Single phase",p:"High HP but low individual attack damage — patience over precision wins this one."}],
+    reward:"Standard Will and materials; closes out a minor side questline."
+  },
+  {
+    ch:2, tier:"character", name:"Yellow-Robed Squire", glyph:"豬", difficulty:"easy",
+    loc:"Fright Cliff, Rockrest Flat",
+    desc:"Also known as 'the Drunken Pig' — an entire quest revolves around sobering him up with food (a Jade Lotus) before he'll even engage. The actual fight, once triggered, is straightforward.",
+    tags:["Quest Boss","Comedic","Requires Jade Lotus"],
+    weapons:["Anything"],
+    armor:["No requirement"],
+    spells:["Not required"],
+    other:["Complete his sobering-up questline with the Jade Lotus first — getting him to actually fight is the harder part of this encounter, not the combat itself"],
+    phases:[{t:"Single phase",p:"Standard moveset for his tier once the fight finally triggers."}],
+    reward:"Quest completion rewards plus standard materials."
+  },
+  {
+    ch:2, tier:"character", name:"Headless Monk", glyph:"僧", difficulty:"moderate",
+    loc:"Crouching Tiger Temple, Temple Entrance",
+    desc:"A grim figure connected to the temple's dark history, fought near the entrance. More narratively unsettling than mechanically punishing.",
+    tags:["Temple Boss","Story Context"],
+    weapons:["Standard Chapter 2 staff"],
+    armor:["No special requirement"],
+    spells:["Standard loadout suffices"],
+    other:["Tied to the temple's backstory — worth exploring the surrounding area for context before or after the fight"],
+    phases:[{t:"Single phase",p:"Standard moveset for an early Chapter 2 Character boss."}],
+    reward:"Standard Will and crafting materials."
+  },
+  {
+    ch:2, tier:"character", name:"Bodhisattva Lingji", glyph:"菩", difficulty:"moderate",
+    loc:"Crouching Tiger Temple, Cellar",
+    desc:"A divine figure encountered in the temple's cellar, tied closely to the Yellow Wind Sage questline and the Wind Tamer vessel's backstory.",
+    tags:["Divine Figure","Quest-Linked","Pre-Yellow Wind Sage"],
+    weapons:["Standard Chapter 2 staff"],
+    armor:["No special requirement"],
+    spells:["Standard loadout suffices"],
+    other:["Encountered on the path toward unlocking tools useful for the Yellow Wind Sage fight — worth fully exploring the Cellar area around this encounter"],
+    phases:[{t:"Single phase",p:"Standard moveset for its tier."}],
+    reward:"Standard Will and materials; connects to the wider Yellow Wind Sage questline."
+  },
+
+  // ===== CHAPTER 3 — Pagoda Realm / Bitter Lake / Snowhill =====
+  {
+    ch:3, tier:"king", name:"Kang-Jin Loong", glyph:"龍", difficulty:"hard",
+    loc:"Snowhill Path, Mirrormere",
+    desc:"A frost-aligned Loong fought beside an icy lake. There's a narrow strip of shore near the shrine, by a fallen log on your right as you face the lake — pulling the fight there constrains his mobility significantly.",
+    tags:["Loong","Ice","Environmental Tech"],
+    weapons:["Staff with strong charge-attack damage; ice resistance helps if available"],
+    armor:["Snowhill-region cold resistance pieces if crafted"],
+    spells:["Cloud Step + charge attack loop is the standard, reliable approach"],
+    other:["Drag the fight to the narrow shoreline by the log before engaging seriously — it cuts off his favorite repositioning options"],
+    phases:[{t:"Single phase",p:"Once cornered on the narrow shore, his moveset becomes very manageable."}],
+    reward:"Ice-themed crafting materials and a step toward the Snowhill secret area."
+  },
+  {
+    ch:3, tier:"king", name:"Kang-Jin Star", glyph:"星", difficulty:"hard",
+    loc:"Bitter Lake, Turtle Island",
+    desc:"Fought on Turtle Island alongside Cyan Loong in some encounters — fast, aerial, and punishes flat-footed positioning.",
+    tags:["Aerial","Fast","Turtle Island"],
+    weapons:["High mobility staff build"],
+    armor:["No special resistance required"],
+    spells:["Cloud Step + charge — the universal answer applies cleanly here too"],
+    other:["Watch for his aerial gap-closers; pre-emptive dodging beats reactive dodging against this one"],
+    phases:[{t:"Single phase",p:"Punish landing recovery after his dive attacks."}],
+    reward:"Materials toward Bitter Lake's regional gear set."
+  },
+  {
+    ch:3, tier:"king", name:"Captain Wise-Voice", glyph:"鐘", difficulty:"hard",
+    loc:"Pagoda Realm, Mani Wheel",
+    desc:"A heavily armored captain who periodically goes prone — that's your real damage window. Hit the head while he's down and keep him there with charge attacks; the Wind Tamer vessel also works well if carried over from Chapter 2.",
+    tags:["Armored","Posture Break","Patched Boss"],
+    weapons:["Staff with strong stagger/posture damage"],
+    armor:["No special requirement, but defense helps during his upright phase"],
+    spells:["Wind Tamer if still equipped — stuns him for a clean combo window"],
+    other:["Note: this boss received balance changes in a past patch — current difficulty is more forgiving than launch reports suggested"],
+    phases:[{t:"Single phase",p:"Bait the prone state, then chain charge attacks on the head before he recovers."}],
+    reward:"Pagoda Realm progression item; unlocks the Mani Wheel's inner chamber."
+  },
+  {
+    ch:3, tier:"king", name:"Cyan Loong", glyph:"青龍", difficulty:"hard",
+    loc:"Bitter Lake, Turtle Island",
+    desc:"Fought in tandem with Kang-Jin Star — the standard Cloud Step + charge attack loop handles this one as well as nearly every Loong-type King in the game.",
+    tags:["Loong","Turtle Island"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["No special requirement"],
+    spells:["Cloud Step + charge attack"],
+    other:["Separate the two combatants if both are active — focus one down before splitting attention"],
+    phases:[{t:"Single phase",p:"Identical approach to most Loong Kings: dodge-cancel into charge."}],
+    reward:"Completes the Turtle Island encounter rewards."
+  },
+  {
+    ch:3, tier:"king", name:"Yellowbrow", glyph:"眉", difficulty:"extreme",
+    loc:"New Thunderclap Temple, Mahavira Hall",
+    desc:"The Chapter 3 finale — and unlike anything before it. A three-part gauntlet with no shrines between fights: first a 'weak' electrified Yellowbrow, then a buffed Macaque Chief (after which you briefly play as the Macaque Chief yourself), then the true three-phase Yellowbrow finale.",
+    tags:["Final Boss · Ch.3","3-Part Gauntlet","Electric","No Mid-fight Rest"],
+    weapons:["Fully upgraded staff with every Chapter 3 enhancement applied before entering"],
+    armor:["Complete current best armor set — revisit Shen Money (Ch.1) to upgrade your Gourd and Xu Dog (Ch.2) to convert Mind Cores into Defense upgrades first"],
+    spells:["Immobilize + A Pluck of Many is the core combo: Pluck of Many → Immobilize → quick-attack combo → spirit attack → Transformation","Red Tides transformation for damage, or Cloud Step / Rock Solid for Alteration depending on preference","Equip the Wandering Wight spirit specifically for this fight — its attack slots directly into the combo chain"],
+    other:["Stock Enhanced Tiger Subduing Pellets (or regular if unavailable), Longevity Decoction, and Evil Repelling Medicament — ration them carefully across all three parts","Fight 1 (weak Yellowbrow): unload everything, mana and healing fully refill afterward regardless of what you spend","Fight 2 (Macaque Chief, true form): same core combo, focus on dodging his now-longer combo strings","Fight 3 (Yellowbrow, true form): single health bar but three phases — ends at 70%, then 50%, escalating each time. This is the real test"],
+    phases:[
+      {t:"Part 1 — Yellowbrow (weak form)",p:"Slow, electricity-based attacks with long gaps between them. Go all-in — resources refill before Part 3."},
+      {t:"Part 2 — Macaque Chief (true form)",p:"Longer combos, ranged attacks, more aggression. Same core combo applies; prioritize dodging full strings."},
+      {t:"Part 3 — Yellowbrow (true form)",p:"One bar, three escalating phases at 70% and 50% health, each adding new attack patterns. Conserve medicine for this stretch specifically."}
+    ],
+    reward:"Major story relic and the gateway to Chapter 4's Webbed Hollow region."
+  },
+
+  // ===== CHAPTER 3 — Yaoguai Chiefs =====
+  {
+    ch:3, tier:"chief", name:"Macaque Chief", glyph:"猿", difficulty:"moderate",
+    loc:"Snowhill Path, Frost-Clad Path — fought multiple times across the chapter",
+    desc:"A monkey general fought repeatedly across Chapter 3 in different contexts — first as a standalone Chief on the Frost-Clad Path, later as part of the Yellowbrow gauntlet. Three separate encounters exist in total, making it the most-repeated single boss identity in the chapter.",
+    tags:["Recurring Boss","Monkey","Fought 3 Times"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["No special requirement"],
+    spells:["Immobilize works reliably across all three encounters"],
+    other:["First encounter is on the Frost-Clad Path shortly after a cutscene with frozen corpses; second is past the Warding Temple shrine; third is the Yellowbrow gauntlet's middle segment, which is notably tougher than the first two"],
+    phases:[{t:"Single phase per encounter",p:"Each fight reuses the same core moveset with escalating aggression — treat the first two as practice for the harder gauntlet version."}],
+    reward:"Standard Will and materials per encounter; the third (Yellowbrow gauntlet) encounter leads directly into the chapter finale."
+  },
+  {
+    ch:3, tier:"chief", name:"Captain Lotus-Vision", glyph:"蓮", difficulty:"easy",
+    loc:"Pagoda Realm, dropped down from Upper Pagoda shrine",
+    desc:"A levitating statue wielding only magic — no melee attacks at all. Slow movement and entirely projectile/laser-based offense make this one of the most approachable Chiefs in the game once you learn the dodge timing.",
+    tags:["Magic Only","No Melee","One of Four Captains"],
+    weapons:["Standard Chapter 3 staff — damage output matters less than survival here"],
+    armor:["No special requirement"],
+    spells:["Not required — this fight is almost entirely about dodge timing rather than burst damage"],
+    other:["Dodge Magic Projectiles and the Projectile Ring at the last possible moment, not early","When the staff tip starts blinking rapidly, that's the Magic Laser — dodge or run immediately","During Arena Magic, walk calmly around the lasers stationed in the arena rather than panicking, then dodge the follow-up projectiles","For Magic Tracker, watch the shrinking ring on each ground marker and step off before it closes","Part of the Four Captains side quest — defeating him unlocks the purple-warded prison cells holding the Prisoner NPC"],
+    phases:[{t:"Single phase",p:"Magic Projectiles, Projectile Ring, Magic Laser, Magic Teleport, Magic Tracker, and the multi-stage Arena Magic ultimate. All entirely dodgeable with patience."}],
+    reward:"1,185 Will, Cold Iron Leaves, a Frostsprout Twig, a Mind Core, and the Spirit of Captain Lotus-Vision."
+  },
+  {
+    ch:3, tier:"chief", name:"Captain Kalpa-Wave", glyph:"血", difficulty:"moderate",
+    loc:"Valley of Ecstasy, Longevity Road — directly in front of the New Thunderclap Temple gate",
+    desc:"A lumbering, clumsy-looking captain guarding the gate to New Thunderclap Temple. His awkward movement disguises real danger — stomping attacks and damage-over-time blood pools that punish complacency at range.",
+    tags:["Gate Guardian","Blood DoT","One of Four Captains"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["No special requirement"],
+    spells:["Immobilize to interrupt his stomp combos"],
+    other:["His stomping attacks are telegraphed but still punishing — don't get complacent just because they're slow","Avoid lingering in the red blood pools he leaves behind; they deal damage over time even at medium range","Part of the Four Captains side quest — required to reach New Thunderclap Temple"],
+    phases:[{t:"Single phase",p:"Leg-based stomping attacks plus medium-range blood-pool ejections. Stay mobile and don't stand still near pooled blood."}],
+    reward:"Standard Will, Cold Iron Leaves, and the Spirit of Captain Kalpa-Wave."
+  },
+  {
+    ch:3, tier:"chief", name:"Non-White", glyph:"丑", difficulty:"moderate",
+    loc:"Valley of Ecstasy, Mindfulness Cliff — fought twice in sequence",
+    desc:"A jester-faced ice yaoguai wielding a long twinblade with very short reach despite the blade's length, fought twice in immediate succession. Flees at 50% HP after the first encounter, with a second harder fight further down the path adding poison to his ice kit.",
+    tags:["Ice","Fought Twice","Story-Related"],
+    weapons:["Thrust Stance recommended to match his long blade's reach"],
+    armor:["Cold resistance helps mitigate the Chill status his ice attacks inflict"],
+    spells:["Cloud Step to escape his fast rolling-charge openers"],
+    other:["He has a Blocking Bar above his health bar — you'll see a blue clang flash when he blocks, so don't waste resources trying to break through it directly","His rolling charge covers huge distance fast; dodge to the side and back rather than trying to out-position it","Craft Body-Cooling Powders before this fight to clear Chill status if it stacks up","Second encounter (after he flees at 50%) adds an Ice Combo Finisher with ground spikes and poison-infused strikes"],
+    phases:[
+      {t:"First encounter",p:"Stab-into-swing combos and rolling charges. Ends automatically once he's reduced to roughly 50% HP and flees."},
+      {t:"Second encounter",p:"Resumes with the same kit plus an Ice Combo Finisher (ground spikes) and poison damage mixed into some strikes."}
+    ],
+    reward:"Cold Iron Leaves, Blood of the Iron Bull, and the Non-White Spirit."
+  },
+  {
+    ch:3, tier:"chief", name:"Non-Able", glyph:"能", difficulty:"hard",
+    loc:"Valley of Ecstasy, Brook of Bliss",
+    desc:"A martial monk found kneeling with his hands bound. Phase one fights with legs only and is fairly forgiving; once defeated, he breaks his restraints, grows in size, fully heals, and gains devastating hand strikes in a much harder phase two.",
+    tags:["Two-Phase","Self-Restrained","Hand-to-Hand"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["No special requirement"],
+    spells:["Save your mana and spells entirely for phase two — phase one is winnable with hit-and-run melee alone"],
+    other:["In phase one, avoid using any spells or abilities; this is purely a positioning and dodge-timing test with his leg attacks","His kicks can take a large chunk of health in one hit — some are delayed specifically to break your dodge rhythm, so don't dodge purely on instinct","Once phase two begins, his health fully resets and he adds fast hand strikes on top of his existing kicks — this is where you spend everything you saved"],
+    phases:[
+      {t:"Phase 1 — Bound",p:"Legs only, hands tied behind his back. Forgiving if you don't waste resources here."},
+      {t:"Phase 2 — Unbound",p:"Breaks free, regains full health, adds hand strikes, and moves noticeably faster. Use all saved mana and spells now."}
+    ],
+    reward:"1,205 Will, 2x Yaoguai Core, Refined Iron Sand, Cold Iron Leaves, and the Spell Binder spell."
+  },
+  {
+    ch:3, tier:"chief", name:"Old Ginseng Guai", glyph:"參", difficulty:"easy",
+    loc:"Valley of Ecstasy, Forest of Felicity — hidden underground near an altar",
+    desc:"A root-spirit yaoguai hidden underground, marked by a sprout of flowers in front of a Valley of Ecstasy altar. Low overall threat once located — the main challenge is finding it.",
+    tags:["Hidden Boss","Root Spirit","Easy"],
+    weapons:["Anything"],
+    armor:["No requirement"],
+    spells:["Not required"],
+    other:["Look for a small sprout of flowers growing in front of an altar — that's the visual cue marking where it's buried"],
+    phases:[{t:"Single phase",p:"Low-threat moveset; the discovery is harder than the fight."}],
+    reward:"Standard Will and Forest of Felicity-region materials."
+  },
+  {
+    ch:3, tier:"chief", name:"Lang-Li-Guhh-Lang", glyph:"蛙", difficulty:"easy",
+    loc:"Valley of Ecstasy, Forest of Felicity — frozen pond area",
+    desc:"Another entry in the recurring frog-boss lineage, this one fought beside a frozen pond and mixing the ice terrain into its attacks. Functionally similar to its Chapter 1 and 2 counterparts.",
+    tags:["Frog","Ice Terrain","Recurring Pattern"],
+    weapons:["Anything — this fight doesn't demand a specific build"],
+    armor:["No special requirement"],
+    spells:["Any loadout works"],
+    other:["Same general dodge rhythm as the other frog Chiefs, with added ice-pond hazards to be aware of underfoot"],
+    phases:[{t:"Single phase",p:"Standard frog-boss moveset with frozen-pond environmental attacks layered in."}],
+    reward:"Cold Iron Leaves, Silk, and Will."
+  },
+  {
+    ch:3, tier:"chief", name:"Green-Capped Martialist", glyph:"綠", difficulty:"hard",
+    loc:"Valley of Ecstasy, Melon Field — Treasure Hunter questline reward",
+    desc:"An agile fire-wielding martial artist who periodically turns invisible mid-fight, unlocked through the Treasure Hunter's side questline. One of the more mechanically distinct optional fights in the chapter thanks to the invisibility mixed with heavy fire damage.",
+    tags:["Fire","Invisibility","Quest-Locked"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["A Fireproof Mantle (if crafted) substantially eases this fight"],
+    spells:["Immobilize lands cleanly once you've tracked him through an invisibility phase and works well to open damage windows","Avoid Strand of Many here — his fire-ring counterattack can wipe your summoned clones instantly"],
+    other:["Complete the Treasure Hunter's side quest at Towers of Karma first to unlock this fight","When he vanishes, keep moving rather than standing still — he often reappears near where you last attacked from","His ring-weapon has notable reach; don't assume melee range is safe just because he's not currently swinging it"],
+    phases:[{t:"Single phase, high mobility",p:"Alternates visible aggressive ring-weapon combos with invisibility phases. Patience and consistent rolling beats trying to predict his reappearance position."}],
+    reward:"Standard Will and materials tied to completing the Treasure Hunter's questline."
+  },
+  {
+    ch:3, tier:"chief", name:"Non-Pure", glyph:"純", difficulty:"moderate",
+    loc:"New Thunderclap Temple, Mahavira Hall — guards a Meditation Spot",
+    desc:"An axe-wielding guardian standing watch over one of New Thunderclap Temple's Meditation Spots. Exclusively heavy attacks with long recovery windows — predictable once you've seen the pattern once.",
+    tags:["Axe","Heavy Attacks Only","Meditation Spot Guardian"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["No special requirement"],
+    spells:["Not required, though Immobilize speeds up the long recovery windows even further"],
+    other:["Every attack is heavy and slow with a long pause afterward — that pause is your entire offensive window, so don't waste it positioning instead of attacking"],
+    phases:[{t:"Single phase",p:"All heavy strikes, all with generous recovery time. Punish the pause after every single attack."}],
+    reward:"A bonus Spark (skill point) from the guarded Meditation Spot, plus standard materials."
+  },
+  {
+    ch:3, tier:"chief", name:"Non-Void", glyph:"空", difficulty:"hard",
+    loc:"New Thunderclap Temple, Temple Entrance",
+    desc:"An old-man-shaped yaoguai fought primarily at range with magic, resorting to fast physical strikes — including his own Cloud Step — only when you close the distance. Tied to the optional Fox questline if the Snow Fox Brush transformation was obtained beforehand.",
+    tags:["Magic Ranged","Uses Cloud Step","Fox Quest-Linked"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["No special requirement"],
+    spells:["Cloud Step yourself to match his mobility and close distance safely between his spell volleys"],
+    other:["If you've obtained the Snow Fox Brush transformation from the Fox's spirit in Valley of Ecstasy beforehand, a special side interaction triggers between Non-Void and the fox spirit here","Dodging his ranged spells is the priority; up close his strikes are fast but his Cloud Step escape means he won't stay in melee range long"],
+    phases:[{t:"Single phase",p:"Ranged magic at distance, fast physical strikes (with his own Cloud Step retreat) up close. Treat this as a mostly-ranged fight."}],
+    reward:"Standard Will and materials; completes part of the optional Fox questline if triggered."
+  },
+
+  // ===== CHAPTER 3 — Characters =====
+  {
+    ch:3, tier:"character", name:"Captain Void-Illusion", glyph:"虚", difficulty:"none",
+    loc:"Valley of Ecstasy, Longevity Road — a carcass at the edge of the area",
+    desc:"Not a fight at all, despite being one of the Four Captains. Found already dead — a giant carcass near the Longevity Road shrine. Interacting with the body grants the spirit directly with no combat required.",
+    tags:["No Combat","One of Four Captains","Item Pickup"],
+    weapons:[],
+    armor:[],
+    spells:[],
+    other:["From the Longevity Road shrine, turn right, pass an enemy, then turn right again to find the giant carcass at the edge of the area","Interacting with the corpse grants The Spirit of Captain Void-Illusion directly — there is no boss fight to win or lose here"],
+    phases:[],
+    reward:"The Spirit of Captain Void-Illusion, required for the Four Captains side quest — obtained with zero combat."
+  },
+  {
+    ch:3, tier:"character", name:"Apramana Bat", glyph:"蝠", difficulty:"moderate",
+    loc:"Bitter Lake, North Shore",
+    desc:"A bat with the head of a golden demon statue, found among large skeletal remains along the shore. Highly mobile and ranged-focused, frequently disengaging to attack from a distance rather than committing to melee.",
+    tags:["Flying","Ranged","Mobile"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["No special requirement"],
+    spells:["Immobilize to ground him during his ranged attack windups"],
+    other:["Important: he will not spawn at all if you defeat the Chapter 3 final boss (Yellowbrow) before finding him first — visit Bitter Lake's North Shore early if you want this fight","Expect to chase him down repeatedly as he disengages; patience beats trying to force sustained melee pressure"],
+    phases:[{t:"Single phase",p:"Frequent disengagement into ranged attacks. Close distance quickly after each volley rather than waiting for him to come to you."}],
+    reward:"Standard Will and Bitter Lake-region materials."
+  },
+  {
+    ch:3, tier:"character", name:"Chen Loong", glyph:"龍", difficulty:"moderate",
+    loc:"Bitter Lake, North Shore",
+    desc:"An NPC-turned-boss fought as part of his own side questline, leading toward Zodiac Village. Complex moveset for an optional Character, but notably fragile — frequent spell use overwhelms him quickly.",
+    tags:["NPC Quest Boss","Complex Moveset","Fragile","Leads to Zodiac Village"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["No special requirement"],
+    spells:["Use spells liberally and often — his low overall health pool means aggressive spell pressure ends the fight quickly despite the complex-looking moveset"],
+    other:["Part of a questline that ultimately unlocks Zodiac Village, a secret area — worth completing for the area access alone"],
+    phases:[{t:"Single phase",p:"Varied combos that look more threatening than they are — his health doesn't support a long fight against sustained spell pressure."}],
+    reward:"1,186 Will, a Yaoguai Core, Refined Iron Sand, and access to the Zodiac Village questline."
+  },
+  {
+    ch:3, tier:"character", name:"Yin Tiger", glyph:"虎", difficulty:"moderate",
+    loc:"Zodiac Village, Village Entrance — a blacksmith holding a sword",
+    desc:"A blacksmith NPC in the secret Zodiac Village area who can be challenged to a sword duel by selecting 'Challenge' in dialogue. A boss-style health bar despite the NPC framing.",
+    tags:["NPC Duel","Secret Area","Sword"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["No special requirement"],
+    spells:["Consider using Spellseal at the very start, since its attack boost scales with how much mana you currently have — front-load it before spending mana elsewhere"],
+    other:["Reach Zodiac Village via Chen Loong's questline first","Speak to Yin Tiger at his stand and select 'Challenge' from the dialogue options to start the duel — it won't trigger automatically"],
+    phases:[{t:"Single phase",p:"Sword-focused moveset typical of a Character-tier duel. Mana-scaling Spellseal synergy makes an aggressive opener worthwhile."}],
+    reward:"The Ebon Flow spell, plus standard Zodiac Village materials."
+  },
+  {
+    ch:3, tier:"character", name:"Monk From The Sea", glyph:"僧", difficulty:"moderate",
+    loc:"New Thunderclap Temple, near Temple Entrance",
+    desc:"A wandering monk fought in a side chamber off the main Temple Entrance path. Grants the Hoarfrost spell on defeat, making this one of the more worthwhile optional fights in the back half of Chapter 3.",
+    tags:["Monk","Grants Hoarfrost Spell","Side Chamber"],
+    weapons:["Standard Chapter 3 staff"],
+    armor:["No special requirement"],
+    spells:["Standard loadout suffices"],
+    other:["From Temple Entrance shrine, turn 90° right, pass through the wall opening, climb the slope and stairs to the left, then go left again through another wall opening to find his arena"],
+    phases:[{t:"Single phase",p:"Standard monk-tier moveset for this point in the chapter."}],
+    reward:"The Hoarfrost spell — a strong defensive/utility addition to your spell loadout."
+  },
+
+  // ===== CHAPTER 4 — Webbed Hollow / Purple Cloud Mountain =====
+  {
+    ch:4, tier:"king", name:"Violet Spider", glyph:"蜘", difficulty:"hard",
+    loc:"Webbed Hollow, The Gathering Cave",
+    desc:"A King among the spider-themed enemies infesting Webbed Hollow. Web-based zoning attacks restrict your movement options more than her direct damage threatens you.",
+    tags:["Spider","Poison","Zoning"],
+    weapons:["Poison-resistant gear if available eases this fight considerably"],
+    armor:["Webbed Hollow set pieces with poison resistance"],
+    spells:["Cloud Step to escape web zones before they fully form"],
+    other:["Don't fight inside the silk patches — bait her into open ground first"],
+    phases:[{t:"Single phase",p:"Control positioning more than you trade hits — she rewards patience."}],
+    reward:"Key materials for the Webbed Hollow regional armor set."
+  },
+  {
+    ch:4, tier:"king", name:"Yellow Loong", glyph:"黃龍", difficulty:"hard",
+    loc:"Webbed Hollow, Relief of the Fallen Loong",
+    desc:"Another Loong King, found near a fallen relief carving deep in Webbed Hollow. Standard Loong patterns apply, but the arena's tight geometry adds extra positioning risk.",
+    tags:["Loong","Tight Arena"],
+    weapons:["Standard Chapter 4 staff"],
+    armor:["No special requirement"],
+    spells:["Cloud Step + charge attack loop"],
+    other:["Be conscious of arena walls behind you — this fight punishes backing yourself into corners more than most"],
+    phases:[{t:"Single phase",p:"Same dodge-cancel-into-charge rhythm as other Loongs, with tighter spacing margins."}],
+    reward:"Lore item tied to the Relief of the Fallen Loong location."
+  },
+  {
+    ch:4, tier:"king", name:"The Scorpionlord", glyph:"蝎", difficulty:"hard",
+    loc:"Purple Cloud Mountain, Bounds Of Deity's Abode",
+    desc:"A venomous King guarding the threshold to Purple Cloud Mountain's inner sanctum. Poison stacking is the real danger — individual hits are manageable, but accumulated stacks punish prolonged exposure.",
+    tags:["Poison","Threshold Guardian"],
+    weapons:["Anything with poison cleanse on hit, if crafted"],
+    armor:["Poison resistance pieces strongly recommended"],
+    spells:["Evil Repelling Medicament pre-fight to blunt poison accumulation"],
+    other:["Reset poison stacks during any safe opening rather than letting them accumulate across the whole fight"],
+    phases:[{t:"Single phase",p:"Treat poison stacking as a second health bar you must also manage."}],
+    reward:"Opens the path deeper into Purple Cloud Mountain."
+  },
+  {
+    ch:4, tier:"king", name:"The Duskveil", glyph:"夜", difficulty:"hard",
+    loc:"Purple Cloud Mountain, Cloudnest Peak",
+    desc:"A shadow-veiled King fought at the mountain's peak. Visibility and timing tricks define this fight more than raw damage.",
+    tags:["Shadow","Timing Trick"],
+    weapons:["Standard Chapter 4 staff"],
+    armor:["No special requirement"],
+    spells:["Rock Solid to parry through her veiled feints"],
+    other:["Watch her stance shift rather than her hands — the veil disguises the actual strike direction"],
+    phases:[{t:"Single phase",p:"Learn the read on her feints before committing to aggressive punishes."}],
+    reward:"Materials toward Purple Cloud Mountain's late-game gear tier."
+  },
+  {
+    ch:4, tier:"king", name:"Hundred-Eyed Daoist Master", glyph:"眼", difficulty:"extreme",
+    loc:"Temple Of The Yellow Flower, Court Of Illumination",
+    desc:"The Chapter 4 finale — a Daoist master whose hundred eyes grant near-omniscient tracking of your dodges, demanding cleaner timing than raw evasion.",
+    tags:["Final Boss · Ch.4","Tracking","High Skill Floor"],
+    weapons:["Fully upgraded staff with every Chapter 4 enhancement"],
+    armor:["Complete current best set; max out Gourd charges beforehand"],
+    spells:["Rock Solid for his tracking grabs — parrying beats dodging here more often than usual","A Pluck of Many to apply pressure from multiple angles, splitting his tracking"],
+    other:["Craft your full medicine stock before entering — there is no mid-fight rest point","His tracking punishes panic-dodging; deliberate, late dodges read better than early ones"],
+    phases:[
+      {t:"Phase 1",p:"Establishes his tracking-grab and ranged eye-beam patterns."},
+      {t:"Phase 2 (below ~50%)",p:"Adds faster combo strings and shorter recovery windows — punish openings immediately, they close fast."}
+    ],
+    reward:"Major story relic; unlocks the route toward Flaming Mountain."
+  },
+
+  // ===== CHAPTER 5 — Flaming Mountain / Furnace Valley =====
+  {
+    ch:5, tier:"king", name:"Yin-Yang Fish", glyph:"魚", difficulty:"hard",
+    loc:"Furnace Valley, The Emerald Hall",
+    desc:"A duality-themed King alternating between two elemental states mid-fight, each demanding a different defensive approach.",
+    tags:["Duality","Elemental Shift"],
+    weapons:["Versatile staff build — no single element-counter solves the whole fight"],
+    armor:["Balanced resistance over specialized resistance"],
+    spells:["Cloud Step to reposition cleanly through the state transition"],
+    other:["Identify the active state by his color shift before committing to an attack pattern read"],
+    phases:[{t:"State A",p:"One elemental moveset."},{t:"State B",p:"Inverted moveset and openings — relearn the rhythm each swap."}],
+    reward:"Furnace Valley regional materials."
+  },
+  {
+    ch:5, tier:"king", name:"Bishui Golden-Eyed Beast", glyph:"獸", difficulty:"hard",
+    loc:"Bishui Cave",
+    desc:"A beast King fought in the cramped confines of Bishui Cave, where its golden-eyed tracking attacks are harder to read in low light than in open arenas.",
+    tags:["Beast","Confined Arena","Low Visibility"],
+    weapons:["Standard Chapter 5 staff"],
+    armor:["No special requirement"],
+    spells:["Immobilize on its charge wind-up"],
+    other:["Sound cues matter more than usual here given the visibility — listen for the charge tell"],
+    phases:[{t:"Single phase",p:"Standard charge-then-punish loop, complicated mainly by cave lighting."}],
+    reward:"Materials toward Bishui Cave's hidden vault."
+  },
+  {
+    ch:5, tier:"king", name:"Red Boy", glyph:"紅", difficulty:"extreme",
+    loc:"Field Of Fire, Fallen Furnace Crater",
+    desc:"A fire-wreathed King fought in an active volcanic crater — the arena itself is nearly as dangerous as he is, with eruption hazards layering on top of his already aggressive moveset.",
+    tags:["Fire","Environmental Hazard","Field Boss"],
+    weapons:["Fire-resistant gear strongly recommended"],
+    armor:["Full fire resistance set if available — this fight punishes its absence harshly"],
+    spells:["Rock Solid against his fire-infused melee strings","Red Tides transformation, ironically, helps you tank chip damage from his own element"],
+    other:["Track the crater's eruption tells separately from his attacks — they can combo into each other if you're caught mid-dodge"],
+    phases:[{t:"Single phase, high pressure",p:"Treat the arena hazards as a second attacker; never commit to a long combo without checking the crater first."}],
+    reward:"Significant fire-themed relic and materials for the Field of Fire armor set."
+  },
+  {
+    ch:5, tier:"king", name:"Yaksha King", glyph:"夜叉", difficulty:"extreme",
+    loc:"Field Of Fire, Fallen Furnace Crater",
+    desc:"The Chapter 5 finale, fought in the same scorched crater as Red Boy but considerably more dangerous — heavy weapon strikes paired with demonic transformation phases.",
+    tags:["Final Boss · Ch.5","Demon Transformation","Heavy Weapon"],
+    weapons:["Fully upgraded staff with every Chapter 5 enhancement applied"],
+    armor:["Complete current best set; fire resistance still relevant given the arena"],
+    spells:["Immobilize on his weapon wind-ups — they're long and punishable","A Pluck of Many during his transformed phase for burst damage before he resets"],
+    other:["Craft a full medicine stock — Longevity Decoction and Evil Repelling Medicament both pull serious weight here","Don't get greedy during his transformed state — it ends with a wide AoE you need a dodge banked for"],
+    phases:[
+      {t:"Phase 1 — Human-aligned weapon combat",p:"Heavy, telegraphed weapon strikes. Punish recovery windows generously."},
+      {t:"Phase 2 — Demon transformation",p:"Faster, wider-reaching attacks and a closing AoE burst — always keep a dodge in reserve."}
+    ],
+    reward:"Crucial story relic; clears the way into Chapter 6's Foothills."
+  },
+
+  // ===== CHAPTER 6 — Foothills =====
+  {
+    ch:6, tier:"king", name:"Giant Shigandang", glyph:"巨石", difficulty:"hard",
+    loc:"Foothills, past Son of Stones — requires all 4 Skandhas (Form, Feeling, Thought, Choice)",
+    desc:"An enlarged version of the Chapter 2 Shigandang encounter — a colossal boulder guai with a fleshy Buddha head fused into stone, its burrowing having drained the surrounding mountains of life. Same telegraphed heavy-hit identity as its Chapter 2 counterpart, scaled up to match the endgame difficulty curve.",
+    tags:["Golem","Heavy Hitter","Scaled-up Returning Boss","Requires 4 Skandhas"],
+    weapons:["Endgame-tier staff with maximum available enhancement"],
+    armor:["Best available Foothills-region set"],
+    spells:["Rock Solid to parry his slams — timing window is identical to the Chapter 2 fight, just with bigger numbers behind it"],
+    other:["Stay in front and out of reach of his swipe attacks — circling behind invites a sweep you won't see coming","Wait for slam attacks that expose the crystal weak points on his hands; the bigger the exposed crystal, the better the punish window","If you remember the Chapter 2 Shigandang fight, the pattern recognition carries over directly"],
+    phases:[{t:"Single phase",p:"Patient parry-counter rhythm, same as the original — respect the increased damage on mistakes, and prioritize hitting exposed hand crystals over general body damage."}],
+    reward:"Final regional materials before the endgame gauntlet."
+  },
+
+  // ===== CHAPTER 6 — Characters =====
+  {
+    ch:6, tier:"character", name:"Supreme Inspector", glyph:"靈", difficulty:"extreme",
+    loc:"Foothills, just past Verdant Path Keeper's Shrine",
+    desc:"A celestial enforcer with the body of a man and the head and wings of a bird — the Jade Emperor's most loyal hand, and the first major roadblock of Chapter 6. One of the longest, most attrition-heavy fights in the game thanks to a massive health pool, constant flight, and a second phase built around a flaming wheel and an enclosing ring of fire. Can optionally be partially fought in Chapter 4 by collecting 4 Purple Talismans, though this doesn't change the real fight here.",
+    tags:["Long Fight","Flight","Fire Wheel","Massive HP Pool"],
+    weapons:["Fully upgraded staff — this fight rewards damage efficiency over raw stats since openings are brief"],
+    armor:["Best available pre-Chapter-6 set"],
+    spells:["Immobilize — the core tool here; use it constantly, including right after his opening Aerial Speed Kick for a free 3-hit combo","Umbral Abyss transformation — save it for when he's grounded and not riding the wheel; it freezes him for serious free damage","Wandering Wight Spirit pairs directly into the Immobilize combo chain"],
+    other:["Bring the Plantain Fan curio (from Princess Iron Fan after Chapter 5) — it extinguishes his ring of fire in phase 2 and stuns him, effectively skipping the hardest part of the fight","When he hides behind a wing, that's a parry stance — don't attack into it, or you'll bounce off and eat a counter","Avoid heavy attacks generally; they're too slow to land reliably given how often he's airborne or mid-combo","When the flaming wheel comes out, stop attacking entirely and just dodge until it stops — trying to trade hits here is how runs go wrong"],
+    phases:[
+      {t:"Phase 1",p:"Sword slashes, wing-parries, aerial dive-kicks, and homing feather volleys. Punish his landing recoveries and the brief stagger after the wing double-strike."},
+      {t:"Phase 2 (≈30% HP)",p:"Grabs you and conjures a ring of fire shrinking your arena, riding a flaming wheel for charge attacks and slam combos. Use the Plantain Fan immediately if you have it; otherwise dodge until he's grounded and off the wheel before re-engaging."}
+    ],
+    reward:"Celestial Ribbon, Ascension Powder Formulas, 2x Fine Gold Thread, 2x Gold Tree Core, a Mind Core, and the Somersault Cloud (fast travel)."
+  },
+  {
+    ch:6, tier:"character", name:"The Old Monkey", glyph:"翁", difficulty:"moderate",
+    loc:"Birthstone, Heart of Birthstone",
+    desc:"A mysterious elder encountered at the game's spiritual point of origin, tied closely to the final confrontations with Stone Monkey and The Great Sage's Broken Shell. More narratively significant than mechanically punishing.",
+    tags:["Story Boss","Birthstone","Endgame"],
+    weapons:["Endgame staff"],
+    armor:["Best available set heading into the finale"],
+    spells:["Whatever loadout you're carrying into Stone Monkey — this encounter doesn't demand a special build"],
+    other:["Treat this as part of the build-up to the Stone Monkey / Great Sage's Broken Shell gauntlet rather than an isolated fight"],
+    phases:[{t:"Single phase",p:"Standard moveset for its tier — the narrative context matters more here than the mechanical challenge."}],
+    reward:"Progresses the critical path toward the game's final encounters."
+  },
+  {
+    ch:6, tier:"character", name:"Stone Monkey", glyph:"猿", difficulty:"extreme",
+    loc:"Birthstone",
+    desc:"A larger, elemental echo of Wukong himself — born of the same celestial stone, wielding fire and ice in a two-phase fight that ends with the original splitting into a weaker clone you must defeat alongside it. When felled, it evolves directly into The Great Sage's Broken Shell.",
+    tags:["Elemental","Fire & Ice","Clone Mechanic","Pre-Finale"],
+    weapons:["Jingubang Staff strongly recommended if obtained"],
+    armor:["Gold Suozi Armor strongly recommended if obtained — both significantly raise your odds here"],
+    spells:["Immobilize to punish the long wind-up on his Grab","A burst spell or transformation held in reserve for when the Stone Monkey Clone appears at 50% HP"],
+    other:["His Jump Smash, Heavy Stomp, and Grab are all slow with generous dodge windows — punish from the side after each","When he teleports and reappears as a stone or ice double, watch for rocks/ice blocks materializing just before he does — that's your tell to ready a dodge","His Ground Shockwave (both phases) follows a fixed rhythm: 3 punishable shockwaves, then 4 harmless ones, then one devastating final shockwave — create distance only for the last one","At 50% HP a weaker clone spawns and shares his moveset — shift focus to the clone since it dies much faster"],
+    phases:[
+      {t:"Phase 1",p:"Jump Smash, Heavy Stomp, Grab, Teleportation (stone/ice double), Hand Swipe Combo, and the 3-stage Ground Shockwave."},
+      {t:"Phase 2 (50% HP)",p:"Adds the Flame Ring, Ice Slam (7 tracking slams plus a final ice burst), and the Stone Monkey Clone. Ground Shockwave returns wreathed in fire with breakable arena sections."}
+    ],
+    reward:"No direct drops — defeating Stone Monkey transitions immediately into The Great Sage's Broken Shell."
+  },
+  {
+    ch:6, tier:"character", name:"The Great Sage's Broken Shell", glyph:"碎", difficulty:"extreme",
+    loc:"Birthstone, Heart of Birthstone",
+    desc:"The true final boss of the main story, emerging the instant Stone Monkey falls. A shattered echo of the Great Sage that absorbs the five Relics collected across the journey and reaches full power almost immediately — fast combos, minimal downtime, and the hardest sustained pressure in the base campaign.",
+    tags:["Final Boss","Absorbs Relics","Fast Combos","Hardest Fight"],
+    weapons:["Best staff available, fully enhanced — there is no margin for an under-leveled weapon here"],
+    armor:["Full best-available set; this is not a fight to attempt under-geared"],
+    spells:["Whatever combination has carried you furthest through the run — Immobilize remains a strong universal pick","A high-damage transformation saved specifically for this fight rather than spent earlier"],
+    other:["This fight rewards everything learned across the previous 25 Yaoguai Kings — there's no single new trick, just tighter execution of fundamentals","Expect almost no downtime between combo strings compared to earlier bosses; positioning before he closes distance matters more than reacting after"],
+    phases:[{t:"Single phase, near-constant pressure",p:"Absorbs the five Relics at the start and fights near full aggression from the opening seconds. Treat every opening as precious — there are far fewer of them than in earlier fights."}],
+    reward:"Completion of the main story and access to the game's multiple endings."
+  },
+
+  // ===== CHAPTER 6 — Yaoguai Chiefs =====
+  {
+    ch:6, tier:"chief", name:"Son of Stones", glyph:"石", difficulty:"easy",
+    loc:"Foothills, Verdant Path — sitting on a cliff edge past the Supreme Inspector arena",
+    desc:"A glowing stone deity's son, sent alone (in the wrong direction) to search for his father. Found peacefully sitting on a cliff edge, clapping his hands — he won't attack unless provoked, and even then he's one of the easier optional fights in the chapter.",
+    tags:["Passive Boss","Lightning","Easy Optional Fight"],
+    weapons:["Anything — open with a big charge attack while he's still seated for free early damage"],
+    armor:["No special requirement"],
+    spells:["Any loadout works; this fight doesn't demand a specific build"],
+    other:["He won't engage until you attack first — use the Somersault Cloud to spot him easily from a distance","His Lightning Clash leaves him winded afterward — that's your best window to focus the crystal on his head","Side Sweep telegraphs with a lean to one side; dodge backward then return to melee range"],
+    phases:[{t:"Single phase",p:"Stomp, Side Sweep, Arm Slam (leaves lightning that explodes when he pulls back up), and Lightning Clash — all slow and individually dodgeable. Go all-in with abilities; this fight won't punish aggression."}],
+    reward:"2,062 Will, Cold Iron Leaves, Fine Gold Thread, and a Mind Core."
+  },
+  {
+    ch:6, tier:"chief", name:"Gold Armored Rhino", glyph:"犀", difficulty:"hard",
+    loc:"Foothills, Rhino Watch Slope",
+    desc:"A heavily armored rhino guai guarding a piece of Wukong's armor. Notable for taking almost no damage anywhere except its horn — breaking the horn first is mandatory before the rest of the fight becomes winnable in reasonable time.",
+    tags:["Heavy Armor","Horn Weak Point","Armor Piece Guardian"],
+    weapons:["High poise-damage staff build to break the horn efficiently"],
+    armor:["No special resistance required, but defense helps during the multi-round horn-breaking process"],
+    spells:["Whatever burst tools you have to capitalize immediately after the horn breaks"],
+    other:["Rest at the Rhino Watch Slope shrine near the arena entrance before engaging — the run-back otherwise is long","Focus all damage on the horn specifically; body damage elsewhere is drastically reduced while it's intact","Expect to need several rounds of horn-breaking before his overall health drops meaningfully"],
+    phases:[{t:"Single phase, horn-gated",p:"Heavily armored body, near-immune until the horn is broken. Break horn → punish window → horn regenerates partial armor → repeat."}],
+    reward:"A piece of Wukong's armor set, plus regional crafting materials."
+  }
+];
+
+const STANCE_NOTES = {
+  smash: "<b>Smash Stance —</b> the default recommendation throughout this guide. Charge attacks paired with Cloud Step (dodge-cancel into a charged hit) carry you through almost every fight on this list except Erlang and the Stone Monkey, who punish the read.",
+  pillar: "<b>Pillar Stance —</b> trades raw damage for unmatched mobility. The vault-off-staff dodge gives extra i-frames against multi-hit combo strings — strong against Tiger Vanguard, Yellowbrow's gauntlet, and any boss whose punishes outweigh your damage window.",
+  thrust: "<b>Thrust Stance —</b> fast pokes building toward a guaranteed-hit finisher. Less popular than Smash, but genuinely strong against armored or shielded targets like Captain Wise-Voice, where breaking posture matters more than burst damage."
+};
+
+
+const WEAPONS = [
+  {
+    name:"Willow Wood Staff", rarity:"common", attack:30, bonus:null,
+    effect:"Your starting weapon. No unique properties — a plain wooden staff to learn the basics with.",
+    source:"Starter weapon — equipped from the very beginning of the game."
+  },
+  {
+    name:"Bronze Cloud Staff", rarity:"uncommon", attack:36, bonus:"Critical Hit Chance +2%",
+    effect:"A modest upgrade over the starter staff with no special unique property — useful early, replaced quickly.",
+    source:"Crafted at any Keeper's Shrine."
+  },
+  {
+    name:"Bronze Clad Staff", rarity:"uncommon", attack:36, bonus:"Deluxe Edition exclusive",
+    effect:"Stats and unique effect mirror the standard Bronze Cloud Staff tier — exact bonus values vary by source and aren't fully confirmed.",
+    source:"Deluxe Edition exclusive content. Crafted at any Keeper's Shrine — not available on standard edition copies, which makes the related 'Staffs and Spears' trophy unobtainable without owning the Deluxe Edition."
+  },
+  {
+    name:"Twin Serpents Staff", rarity:"uncommon", attack:40, bonus:null,
+    effect:"Moderately increases the damage of your Light Attack Combo finishers — and the effect is massively enhanced while fighting in water.",
+    source:"Crafted after defeating the Whiteclad Noble in Chapter 1."
+  },
+  {
+    name:"Wind Bear Staff", rarity:"rare", attack:50, bonus:"Critical Hit Chance +4%",
+    effect:"Considerably increases the Critical Hit Chance of the Unveiling Strike from Cloud Step — built for a dodge-and-counter playstyle.",
+    source:"Crafted at the Keeper's Shrine."
+  },
+  {
+    name:"Cloud-Patterned Stone Staff", rarity:"rare", attack:60, bonus:"Defense +30",
+    effect:"Moderately increases the damage of charged Smash Stance Heavy Attacks — a tanky pick for a Smash-focused build.",
+    source:"Crafted upon defeating the secret Shigandang boss in Chapter 2."
+  },
+  {
+    name:"Rat Sage Staff", rarity:"epic", attack:66, bonus:"Critical Hit Chance +7%",
+    effect:"The fourth move of your Light Attack Combo and the Mobile Staff Spin stir up a whirlwind of sand, increasing attack range and damage.",
+    source:"Crafted upon defeating the Yellow Wind Sage, the final boss of Chapter 2."
+  },
+  {
+    name:"Loongwreathe Staff", rarity:"epic", attack:70, bonus:null,
+    effect:"Moderately increases the damage dealt by all Pillar Stance moves.",
+    source:"Crafted as an upgrade to the Twin Serpents Staff after defeating the optional Red Loong boss in Black Wind Mountain (requires Loong Scales from Chapter 2)."
+  },
+  {
+    name:"Kang-Jin Staff", rarity:"epic", attack:70, bonus:"Critical Hit Chance +6%",
+    effect:"Punishing Downpour deals Thunder damage to the enemy instead of area damage — turns a defensive spell into a precise lightning strike.",
+    source:"Crafted upon defeating the Kang-Jin Star boss in Chapter 3."
+  },
+  {
+    name:"Chu-Bai Spear", rarity:"epic", attack:75, bonus:null,
+    effect:"Integrates spear techniques into your Light Attack Combo and increases damage dealt by Thrust Stance moves — the definitive Thrust-build staff.",
+    source:"Crafted upon completing the Pagoda Realm Prisoner's questline in Chapter 3."
+  },
+  {
+    name:"Chitin Staff", rarity:"epic", attack:80, bonus:"Critical Hit Chance +5%",
+    effect:"Upon a successful hit with a charged Heavy Attack, each Focus Point spent slightly recovers Health — strong sustain for an aggressive Smash playstyle.",
+    source:"Crafted after defeating The Second Sister in Chapter 4."
+  },
+  {
+    name:"Spikeshaft Staff", rarity:"legendary", attack:80, bonus:null,
+    effect:"Continuously gains Focus for a brief moment after Seeing Through (parrying/reading) an enemy attack — rewards precise defensive play with resource generation.",
+    source:"Crafted after completing Chapter 3."
+  },
+  {
+    name:"Spider Celestial Staff", rarity:"legendary", attack:85, bonus:"Critical Hit Chance +12%",
+    effect:"Charged Heavy Attacks recover Health per Focus Point spent; while the enemy is Poisoned, hits also inflict Poison Bane.",
+    source:"Crafted as an upgrade to the Chitin Staff after defeating the Violet Spider boss in Chapter 4."
+  },
+  {
+    name:"Visionary Centipede Staff", rarity:"legendary", attack:90, bonus:"Critical Hit Chance +10%",
+    effect:"Charged Heavy Attacks recover Health per Focus Point spent, with massively enhanced recovery if the enemy is in a Poisoned state.",
+    source:"Crafted as an upgrade to the Chitin Staff after completing Chapter 4."
+  },
+  {
+    name:"Staff of Blazing Karma", rarity:"legendary", attack:100, bonus:"Defense +40, Burn Resistance +10",
+    effect:"Charged Heavy Attacks in Smash Stance costing 3+ Focus Points leave a bursting lava effect on the ground — strong area denial for a tanky build.",
+    source:"Crafted as an upgrade to the Cloud-Patterned Stone Staff (no specific boss requirement beyond having the base staff)."
+  },
+  {
+    name:"Bishui Beast Staff", rarity:"legendary", attack:105, bonus:"Critical Hit Chance +10%",
+    effect:"No unique property beyond its strong base stats — a pure damage upgrade for players who don't need a special effect.",
+    source:"Crafted as an upgrade to the Rat Sage Staff after defeating the Bishui Golden-Eyed Beast in Chapter 5."
+  },
+  {
+    name:"Golden Loong Staff", rarity:"mythical", attack:108, bonus:null,
+    effect:"Moderately increases damage from all Pillar Stance moves. A loong (dragon) can be summoned to strike enemies with Thunder during Pillar Stance Heavy Attacks costing 3–4 Focus Points.",
+    source:"Crafted as an upgrade to the Loongwreathe Staff after defeating Cyan Loong on Turtle Island in Chapter 3 (requires Loong Scales from Chapter 2)."
+  },
+  {
+    name:"Dark Iron Staff", rarity:"mythical", attack:110, bonus:"Burn Resistance +5",
+    effect:"Considerably increases Attack based on your current Defense stat — rewards a defense-stacking build with scaling offense.",
+    source:"New Game Plus only — crafted as an upgrade to the Staff of Blazing Karma."
+  },
+  {
+    name:"Adept Spine-Shooting Fuban Staff", rarity:"mythical", attack:120, bonus:"Critical Hit Chance +25%",
+    effect:"Charged Heavy Attacks recover Health per Focus Point spent and fire spines from the staff at nearby enemies — exceptional AoE clear and sustain combined.",
+    source:"New Game Plus only — crafted as an upgrade to the Chitin Staff."
+  },
+  {
+    name:"Tri-Point Double-Edged Spear", rarity:"mythical", attack:135, bonus:"Critical Hit Chance +6%",
+    effect:"Integrates spear techniques into Light Attack Combo and boosts Thrust Stance damage; performing Forceful Thrust fires swords from the staff to strike at range.",
+    source:"Unlocked after defeating a secret boss only accessible post-main-story, after completing various side objectives."
+  },
+  {
+    name:"Jingubang", rarity:"mythical", attack:135, bonus:"Critical Hit Chance +6%",
+    effect:"The signature Ruyi Jingu Bang. The 4th Focus Point gauge no longer depletes over time. Heaven's Equal: briefly boosts Critical Hit Chance after casting a Spell. Critical Hits slightly reduce the cooldown of all Spells.",
+    source:"Found at the Water Curtain Cave, north of the Mantis-Catching Swamp waypoint in Chapter 6. Requires the Somersault Cloud to reach."
+  },
+  {
+    name:"Stormflash Loong Staff", rarity:"mythical", attack:140, bonus:"Critical Hit Chance +9%",
+    effect:"Draws Thunder while charging an attack, and inflicts Thunder damage with every staff strike while the enemy is in a Shocked state — the highest base Attack stat of any staff in the game.",
+    source:"New Game Plus only — crafted at any Keeper's Shrine."
+  }
+];
+
+const RARITY_ORDER = ["common","uncommon","rare","epic","legendary","mythical"];
+const RARITY_LABELS = {common:"Common",uncommon:"Uncommon",rare:"Rare",epic:"Epic",legendary:"Legendary",mythical:"Mythical"};
+
+// ===== Original SVG icon set — hand-coded silhouettes, no copyrighted art =====
+// Each icon is a simple, stylized line/fill illustration keyed by creature/theme type.
+const ICONS = {
+  wolf: `<svg viewBox="0 0 48 48" fill="none"><path d="M10 32c0-9 5-16 14-16s14 7 14 16c0 4-2 6-2 6l-4-3-4 3-4-3-4 3-4-3-4 3s-2-2-2-6z" fill="currentColor" opacity=".9"/><path d="M14 16l2-6 4 4M34 16l-2-6-4 4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="20" cy="26" r="1.6" fill="#0B0C10"/><circle cx="28" cy="26" r="1.6" fill="#0B0C10"/></svg>`,
+  bear: `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="28" r="13" fill="currentColor"/><circle cx="14" cy="15" r="5" fill="currentColor"/><circle cx="34" cy="15" r="5" fill="currentColor"/><circle cx="20" cy="27" r="1.6" fill="#0B0C10"/><circle cx="28" cy="27" r="1.6" fill="#0B0C10"/><ellipse cx="24" cy="33" rx="4" ry="3" fill="#0B0C10" opacity=".5"/></svg>`,
+  monk: `<svg viewBox="0 0 48 48" fill="none"><path d="M24 6a8 8 0 018 8v3H16v-3a8 8 0 018-8z" fill="currentColor"/><path d="M12 40c0-9 5-16 12-16s12 7 12 16" stroke="currentColor" stroke-width="3" fill="none"/><circle cx="24" cy="13" r="2" fill="#0B0C10"/></svg>`,
+  tiger: `<svg viewBox="0 0 48 48" fill="none"><path d="M10 30c0-9 6-16 14-16s14 7 14 16c0 5-3 7-3 7l-3-4-4 4-4-4-4 4-4-4-3 4s-3-2-3-7z" fill="currentColor"/><path d="M15 18l4-7M33 18l-4-7" stroke="currentColor" stroke-width="2.5"/><path d="M16 28l3 3M32 28l-3 3M20 32l2 3M28 32l-2 3" stroke="#0B0C10" stroke-width="1.5" opacity=".6"/></svg>`,
+  loong: `<svg viewBox="0 0 48 48" fill="none"><path d="M6 24c4-8 8-12 14-12 5 0 7 3 10 3 4 0 6-3 10-3-2 6-6 8-10 8 3 3 4 7 2 11-2-5-5-7-8-7-4 0-6 4-10 4-3 0-5-2-8-4z" fill="currentColor"/><circle cx="11" cy="22" r="1.4" fill="#0B0C10"/></svg>`,
+  wind: `<svg viewBox="0 0 48 48" fill="none"><path d="M6 16h22a5 5 0 100-10" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M6 24h30a5 5 0 110 10" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M6 34h18a4 4 0 110 8" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`,
+  fire: `<svg viewBox="0 0 48 48" fill="none"><path d="M24 4c4 8-4 10-4 16 0 4 3 6 6 6 4 0 7-3 7-8 4 4 6 9 6 14 0 8-7 14-15 14S9 38 9 30c0-6 3-11 7-15-1 3 0 5 2 5 3 0-1-9 6-16z" fill="currentColor"/></svg>`,
+  spider: `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="8" fill="currentColor"/><path d="M16 18L6 12M16 24L4 24M16 30L6 38M32 18l10-6M32 24l12 0M32 30l10 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>`,
+  golem: `<svg viewBox="0 0 48 48" fill="none"><rect x="10" y="14" width="28" height="24" rx="3" fill="currentColor"/><rect x="16" y="6" width="16" height="10" rx="2" fill="currentColor"/><circle cx="20" cy="24" r="1.8" fill="#0B0C10"/><circle cx="28" cy="24" r="1.8" fill="#0B0C10"/><path d="M14 38l-3 6M34 38l3 6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>`,
+  beetle: `<svg viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="26" rx="13" ry="16" fill="currentColor"/><line x1="24" y1="12" x2="24" y2="40" stroke="#0B0C10" stroke-width="1.5" opacity=".5"/><path d="M20 8l-3-5M28 8l3-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
+  divine: `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="6" fill="currentColor"/><g stroke="currentColor" stroke-width="2"><line x1="24" y1="4" x2="24" y2="12"/><line x1="24" y1="36" x2="24" y2="44"/><line x1="4" y1="24" x2="12" y2="24"/><line x1="36" y1="24" x2="44" y2="24"/><line x1="10" y1="10" x2="15" y2="15"/><line x1="33" y1="33" x2="38" y2="38"/><line x1="10" y1="38" x2="15" y2="33"/><line x1="33" y1="15" x2="38" y2="10"/></g></svg>`,
+  scorpion: `<svg viewBox="0 0 48 48" fill="none"><path d="M8 20c6-2 10 0 12 4 2-5 8-6 12-3 3 2 4 6 8 5-2 6-7 7-11 5 1 4-1 8-5 9" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="14" cy="22" r="3" fill="currentColor"/></svg>`,
+  shadow: `<svg viewBox="0 0 48 48" fill="none"><path d="M24 4c11 0 16 9 16 18 0 11-7 18-16 22-9-4-16-11-16-22 0-9 5-18 16-18z" fill="currentColor" opacity=".85"/><circle cx="19" cy="22" r="1.6" fill="#F0C674"/><circle cx="29" cy="22" r="1.6" fill="#F0C674"/></svg>`,
+  eyes: `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="17" fill="currentColor"/><circle cx="16" cy="20" r="2" fill="#0B0C10"/><circle cx="24" cy="16" r="2" fill="#0B0C10"/><circle cx="32" cy="20" r="2" fill="#0B0C10"/><circle cx="14" cy="29" r="2" fill="#0B0C10"/><circle cx="24" cy="32" r="2" fill="#0B0C10"/><circle cx="34" cy="29" r="2" fill="#0B0C10"/></svg>`,
+  fish: `<svg viewBox="0 0 48 48" fill="none"><path d="M6 24c8-10 22-10 30-2-2 1-2 3 0 4-8 8-22 8-30-2z" fill="currentColor"/><path d="M36 22l8-6v16l-8-6z" fill="currentColor"/><circle cx="14" cy="22" r="1.6" fill="#0B0C10"/></svg>`,
+  beast: `<svg viewBox="0 0 48 48" fill="none"><path d="M8 30c0-10 7-18 16-18s16 8 16 18c0 5-3 8-3 8l-5-4-3 4-5-5-5 5-3-4-5 4s-3-3-3-8z" fill="currentColor"/><circle cx="18" cy="26" r="2" fill="#F0C674"/><circle cx="30" cy="26" r="2" fill="#F0C674"/></svg>`,
+  demon: `<svg viewBox="0 0 48 48" fill="none"><path d="M24 6c10 0 17 8 17 18 0 12-8 18-17 18S7 36 7 24C7 14 14 6 24 6z" fill="currentColor"/><path d="M10 14l-6-8M38 14l6-8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="18" cy="24" r="2" fill="#9B2C2C"/><circle cx="30" cy="24" r="2" fill="#9B2C2C"/></svg>`,
+  yaksha: `<svg viewBox="0 0 48 48" fill="none"><rect x="14" y="10" width="20" height="26" rx="4" fill="currentColor"/><path d="M10 8l4 6M38 8l-4 6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="22" r="2" fill="#9B2C2C"/><circle cx="28" cy="22" r="2" fill="#9B2C2C"/><path d="M18 30h12" stroke="#0B0C10" stroke-width="2"/></svg>`,
+  stoneking: `<svg viewBox="0 0 48 48" fill="none"><polygon points="24,4 40,16 34,40 14,40 8,16" fill="currentColor"/><circle cx="19" cy="22" r="1.8" fill="#0B0C10"/><circle cx="29" cy="22" r="1.8" fill="#0B0C10"/></svg>`,
+  rhino: `<svg viewBox="0 0 48 48" fill="none"><ellipse cx="22" cy="26" rx="16" ry="12" fill="currentColor"/><path d="M36 24l10-4-6 10z" fill="currentColor"/><circle cx="16" cy="24" r="1.8" fill="#0B0C10"/></svg>`,
+  frog: `<svg viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="28" rx="14" ry="11" fill="currentColor"/><circle cx="14" cy="16" r="6" fill="currentColor"/><circle cx="34" cy="16" r="6" fill="currentColor"/><circle cx="14" cy="16" r="2" fill="#0B0C10"/><circle cx="34" cy="16" r="2" fill="#0B0C10"/></svg>`,
+  rat: `<svg viewBox="0 0 48 48" fill="none"><ellipse cx="22" cy="26" rx="14" ry="10" fill="currentColor"/><circle cx="12" cy="16" r="5" fill="currentColor"/><circle cx="30" cy="14" r="6" fill="currentColor"/><path d="M36 26q10 2 8 14" stroke="currentColor" stroke-width="2.5" fill="none"/><circle cx="30" cy="13" r="1.6" fill="#0B0C10"/></svg>`,
+  sword: `<svg viewBox="0 0 48 48" fill="none"><path d="M24 4v28" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M14 18h20" stroke="currentColor" stroke-width="3"/><path d="M18 36l6 8 6-8" fill="currentColor"/></svg>`,
+  staff: `<svg viewBox="0 0 48 48" fill="none"><line x1="14" y1="6" x2="34" y2="42" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="14" cy="6" r="4" fill="currentColor"/><circle cx="34" cy="42" r="4" fill="currentColor"/></svg>`,
+  ape: `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="22" r="14" fill="currentColor"/><circle cx="10" cy="16" r="5" fill="currentColor"/><circle cx="38" cy="16" r="5" fill="currentColor"/><circle cx="19" cy="21" r="2" fill="#0B0C10"/><circle cx="29" cy="21" r="2" fill="#0B0C10"/><ellipse cx="24" cy="28" rx="6" ry="4" fill="#0B0C10" opacity=".4"/></svg>`,
+  stone_relic: `<svg viewBox="0 0 48 48" fill="none"><path d="M24 4l16 10v20L24 44 8 34V14z" fill="currentColor" opacity=".85"/><path d="M24 4v40M8 14l16 10 16-10" stroke="#0B0C10" stroke-width="1" opacity=".4"/></svg>`,
+  npc: `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="8" fill="currentColor"/><path d="M10 42c0-9 6-16 14-16s14 7 14 16" fill="none" stroke="currentColor" stroke-width="3"/></svg>`,
+  shell: `<svg viewBox="0 0 48 48" fill="none"><path d="M24 4c12 0 18 10 18 20 0 12-8 20-18 20S6 36 6 24C6 14 12 4 24 4z" fill="currentColor" opacity=".6"/><path d="M24 4v40M6 24h36M11 12l26 24M37 12L11 36" stroke="#0B0C10" stroke-width="1" opacity=".4"/></svg>`,
+  default: `<svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" fill="currentColor"/></svg>`
+};
+
+// Map each boss name to an icon key — built from tags/lore, not from game art.
+function getIconKey(boss){
+  const n = boss.name.toLowerCase();
+  const t = (boss.tags||[]).join(' ').toLowerCase();
+  if(n.includes('wolf')||n.includes('lang')) return 'wolf';
+  if(n.includes('bear')) return 'bear';
+  if(n.includes('tiger')) return 'tiger';
+  if(n.includes('loong')||n.includes('dragon')) return 'loong';
+  if(n.includes('wind sage')||t.includes('wind')) return 'wind';
+  if(n.includes('fire')||n.includes('boy')||n.includes('flame')||t.includes('fire')) return 'fire';
+  if(n.includes('spider')) return 'spider';
+  if(n.includes('shigandang')||n.includes('stone vanguard')||n.includes('golem')||t.includes('golem')) return 'golem';
+  if(n.includes('beetle')||n.includes('fuban')) return 'beetle';
+  if(n.includes('bodhisattva')||n.includes('buddha')||n.includes('divine')||n.includes('inspector')) return 'divine';
+  if(n.includes('scorpion')) return 'scorpion';
+  if(n.includes('duskveil')||n.includes('shadow')) return 'shadow';
+  if(n.includes('eyed')||n.includes('hundred-eyed')) return 'eyes';
+  if(n.includes('fish')) return 'fish';
+  if(n.includes('yaksha')) return 'yaksha';
+  if(n.includes('rhino')) return 'rhino';
+  if(n.includes('frog')||n.includes('baw-li')||n.includes('lang-li-guhh-baw')) return 'frog';
+  if(n.includes('prince')||n.includes('king of flowing')||n.includes('rat')) return 'rat';
+  if(n.includes('monkey')||n.includes('macaque')||n.includes('yellowbrow')) return 'ape';
+  if(n.includes('broken shell')) return 'shell';
+  if(n.includes('keeper')||n.includes('npc')||boss.difficulty==='none') return 'npc';
+  if(n.includes('stones')||n.includes('shigandang')) return 'stone_relic';
+  if(n.includes('beast')) return 'beast';
+  if(n.includes('elder')||n.includes('guangzhi')||n.includes('guangmou')||n.includes('monk')||n.includes('daoist')) return 'monk';
+  if(n.includes('demon')||t.includes('demon')) return 'demon';
+  return 'default';
+}
+
+function bossIconSVG(boss){
+  const key = getIconKey(boss);
+  return ICONS[key] || ICONS.default;
+}
+
+(function(){
+  const grid = document.getElementById('bossGrid');
+  const filterRow = document.getElementById('filterRow');
+  const stanceNote = document.getElementById('stanceNote');
+
+  const chapterNames = {1:"Black Wind Mountain",2:"Yellow Wind Formation",3:"Pagoda Realm",4:"Webbed Hollow",5:"Flaming Mountain",6:"Foothills"};
+
+  function listHtml(label, items, danger){
+    if(!items || !items.length) return '';
+    return `<div class="loadout-box">
+      <div class="lbl">${icon(label)} ${label}</div>
+      <ul>${items.map(i=>`<li>${i}</li>`).join('')}</ul>
+    </div>`;
+  }
+
+  function icon(label){
+    const map = {Weapons:"⚔️",Armor:"🛡️",Spells:"✨","Other Gear":"🎒"};
+    return map[label] || "•";
+  }
+
+  function tagHtml(tags){
+    return tags.map(t=>`<span class="tag">${t}</span>`).join('');
+  }
+
+  function phaseHtml(phases){
+    if(!phases) return '';
+    return phases.map(p=>`
+      <div class="phase-block">
+        <div class="lbl">${p.t}</div>
+        <p>${p.p}</p>
+      </div>
+    `).join('');
+  }
+
+  const tierLabels = {king:"Yaoguai King", chief:"Yaoguai Chief", character:"Character"};
+
+  function cardHtml(b, idx){
+    const hasFight = b.difficulty !== 'none';
+    return `
+    <div class="boss-card" data-difficulty="${b.difficulty}" data-ch="${b.ch}" data-tier="${b.tier}" id="boss-${idx}">
+      <div class="boss-top" onclick="toggleBoss(${idx})">
+        <div class="boss-id">
+          <div class="boss-glyph">${bossIconSVG(b)}</div>
+          <div class="boss-name-wrap">
+            <div class="chapter-tag"><span class="tier-badge ${b.tier}">${tierLabels[b.tier]}</span>Ch.${b.ch} · ${chapterNames[b.ch]}</div>
+            <h3 class="display">${b.name}</h3>
+            <div class="loc">${b.loc}</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+          <div class="difficulty-badge">${hasFight ? b.difficulty : 'no fight'}</div>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="boss-body">
+        <div class="boss-body-inner">
+          <p class="desc">${b.desc}</p>
+          <div class="tag-row">${tagHtml(b.tags)}</div>
+          ${hasFight ? `<div class="loadout-grid">
+            ${listHtml('Weapons', b.weapons)}
+            ${listHtml('Armor', b.armor)}
+            ${listHtml('Spells', b.spells)}
+          </div>` : ''}
+          ${b.other && b.other.length ? `<div class="loadout-box" style="margin-bottom:16px;"><div class="lbl">🎒 Other Gear &amp; Tactics</div><ul>${b.other.map(i=>`<li>${i}</li>`).join('')}</ul></div>` : ''}
+          ${phaseHtml(b.phases)}
+          <div class="reward-strip">
+            <div class="ic">🏆</div>
+            <div class="txt">${b.reward}</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  grid.innerHTML = BOSSES.map((b,i)=>cardHtml(b,i)).join('');
+
+  window.toggleBoss = function(idx){
+    const card = document.getElementById('boss-'+idx);
+    const wasOpen = card.classList.contains('open');
+    document.querySelectorAll('.boss-card.open').forEach(c=>c.classList.remove('open'));
+    if(!wasOpen){
+      card.classList.add('open');
+      setTimeout(()=>{
+        const rect = card.getBoundingClientRect();
+        if(rect.top < 70){
+          window.scrollBy({top: rect.top - 80, behavior:'smooth'});
+        }
+      }, 80);
+    }
+  };
+
+  // ===== Chapter filter =====
+  let activeCh = 'all';
+  let activeTier = 'all';
+
+  function applyFilters(){
+    document.querySelectorAll('.boss-card').forEach(card=>{
+      const chMatch = activeCh === 'all' || card.dataset.ch === activeCh;
+      const tierMatch = activeTier === 'all' || card.dataset.tier === activeTier;
+      card.classList.toggle('hidden', !(chMatch && tierMatch));
+    });
+  }
+
+  filterRow.addEventListener('click', (e)=>{
+    const pill = e.target.closest('.pill');
+    if(!pill) return;
+    filterRow.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active');
+    activeCh = pill.dataset.ch;
+    applyFilters();
+  });
+
+  const tierRow = document.getElementById('tierRow');
+  tierRow.addEventListener('click', (e)=>{
+    const pill = e.target.closest('.pill');
+    if(!pill) return;
+    tierRow.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+    pill.classList.add('active');
+    activeTier = pill.dataset.tier;
+    applyFilters();
+  });
+
+  // ===== Stance selector =====
+  document.querySelectorAll('.stance-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      document.querySelectorAll('.stance-card').forEach(c=>c.classList.remove('active'));
+      card.classList.add('active');
+      const stance = card.dataset.stance;
+      stanceNote.innerHTML = STANCE_NOTES[stance];
+    });
+  });
+
+  // ===== Armory / Weapons rendering =====
+  const weaponGrid = document.getElementById('weaponGrid');
+  const rarityRow = document.getElementById('rarityRow');
+
+  function weaponCardHtml(w, idx){
+    const statChips = [`<span class="stat-chip">Attack <b>${w.attack}</b></span>`];
+    if(w.bonus) statChips.push(`<span class="stat-chip">${w.bonus}</span>`);
+    return `
+    <div class="weapon-card" data-rarity="${w.rarity}" id="weapon-${idx}">
+      <div class="weapon-top">
+        <div class="weapon-icon">${ICONS.staff}</div>
+        <div class="weapon-name-wrap">
+          <h4 class="display">${w.name}</h4>
+          <span class="rarity-pill rarity-${w.rarity}">${RARITY_LABELS[w.rarity]}</span>
+        </div>
+      </div>
+      <div class="weapon-stats">${statChips.join('')}</div>
+      <p class="weapon-effect">${w.effect}</p>
+      <div class="weapon-source"><b>How to obtain:</b> ${w.source}</div>
+    </div>`;
+  }
+
+  if(weaponGrid){
+    weaponGrid.innerHTML = WEAPONS.map((w,i)=>weaponCardHtml(w,i)).join('');
+  }
+
+  if(rarityRow){
+    rarityRow.addEventListener('click', (e)=>{
+      const pill = e.target.closest('.pill');
+      if(!pill) return;
+      rarityRow.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));
+      pill.classList.add('active');
+      const rarity = pill.dataset.rarity;
+      document.querySelectorAll('.weapon-card').forEach(card=>{
+        card.style.display = (rarity === 'all' || card.dataset.rarity === rarity) ? '' : 'none';
+      });
+    });
+  }
+
+  // ===== Monkey companion: chases cursor, attacks, flees on click =====
+  const monkey = document.getElementById('monkeyCompanion');
+  if(monkey){
+    let mx = 40, my = window.innerHeight * 0.5;   // monkey position (top-left corner)
+    let targetX = mx, targetY = my;
+    let mouseX = null, mouseY = null;
+    let state = 'idle';           // idle | chasing | attacking | fleeing | silly
+    let fleeUntil = 0;
+    let fleeTargetTime = 0;
+    let lastSillyAt = Date.now();
+    const SIZE = 46;
+    const CHASE_RADIUS = 260;     // start chasing when cursor within this distance
+    const ATTACK_RADIUS = 50;     // start attacking when this close
+    const SPEED_CHASE = 6.5;
+    const SPEED_FLEE = 9;
+    const sillyClasses = ['scratch','dizzy','jump'];
+
+    function setClasses(cls){
+      monkey.classList.remove('idle','walking','running','attacking','fleeing','scratch','dizzy','jump');
+      monkey.classList.add(cls);
+    }
+
+    function pickFleeTarget(){
+      const margin = 60;
+      targetX = margin + Math.random() * (window.innerWidth - margin*2 - SIZE);
+      targetY = margin + Math.random() * (window.innerHeight - margin*2 - SIZE);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    }, {passive:true});
+
+    document.addEventListener('mouseleave', () => { mouseX = null; mouseY = null; });
+
+    monkey.addEventListener('click', (e) => {
+      e.stopPropagation();
+      state = 'fleeing';
+      fleeUntil = Date.now() + 4000;
+      fleeTargetTime = 0; // force immediate new target
+    });
+
+    function distanceTo(x, y){
+      const cx = mx + SIZE/2, cy = my + SIZE/2;
+      return Math.hypot(x - cx, y - cy);
+    }
+
+    function tick(){
+      const now = Date.now();
+      const cx = mx + SIZE/2, cy = my + SIZE/2;
+
+      if(state === 'fleeing'){
+        if(now > fleeUntil){
+          state = 'idle';
+        } else {
+          if(now > fleeTargetTime || distanceTo(targetX + SIZE/2, targetY + SIZE/2) < 20){
+            pickFleeTarget();
+            fleeTargetTime = now + 600 + Math.random()*500;
+          }
+          const dx = targetX - mx, dy = targetY - my;
+          const dist = Math.hypot(dx, dy) || 1;
+          mx += (dx/dist) * SPEED_FLEE;
+          my += (dy/dist) * SPEED_FLEE;
+          monkey.classList.toggle('face-left', dx < 0);
+          setClasses('fleeing');
+        }
+      } else if(mouseX !== null && distanceTo(mouseX, mouseY) < CHASE_RADIUS){
+        const dx = mouseX - cx, dy = mouseY - cy;
+        const dist = Math.hypot(dx, dy);
+        if(dist < ATTACK_RADIUS){
+          state = 'attacking';
+          monkey.classList.toggle('face-left', dx < 0);
+          setClasses('attacking');
+        } else {
+          state = 'chasing';
+          mx += (dx/dist) * SPEED_CHASE;
+          my += (dy/dist) * SPEED_CHASE;
+          monkey.classList.toggle('face-left', dx < 0);
+          setClasses('running');
+        }
+      } else {
+        if(state !== 'idle' && state !== 'silly'){
+          state = 'idle';
+        }
+        if(state === 'idle'){
+          setClasses('idle');
+          // occasionally trigger a silly reaction while idle
+          if(now - lastSillyAt > 6000 && Math.random() < 0.01){
+            lastSillyAt = now;
+            const choice = sillyClasses[Math.floor(Math.random()*sillyClasses.length)];
+            state = 'silly';
+            setClasses(choice);
+            const duration = choice === 'dizzy' ? 1600 : choice === 'jump' ? 1200 : 1800;
+            setTimeout(() => { state = 'idle'; }, duration);
+          }
+        }
+      }
+
+      // clamp to viewport
+      mx = Math.max(0, Math.min(window.innerWidth - SIZE, mx));
+      my = Math.max(0, Math.min(window.innerHeight - SIZE, my));
+
+      monkey.style.left = mx + 'px';
+      monkey.style.top = my + 'px';
+
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+})();
+
+
+</script>
+</body>
+</html>
