@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palm &amp; Weave — Sustainable Sleep, Naturally Crafted</title>
+<meta name="description" content="Handwoven cots and daybeds, crafted by artisans from sustainably harvested palm fiber and teak wood.">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .hero{
+    position:relative;
+    min-height: 92vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#2A2621;
+    overflow:hidden;
+  }
+  .hero-photo{ position:absolute; inset:0; z-index:0; }
+  .hero-veil{
+    position:absolute; inset:0; z-index:1;
+    background: linear-gradient(180deg, rgba(251,247,238,0.15), rgba(58,45,25,0.18) 70%, rgba(30,22,12,0.35));
+  }
+  .hero-content{ position:relative; z-index:2; max-width:800px; padding: 0 24px; }
+  .hero-content h1{
+    font-size: clamp(38px, 6.5vw, 74px);
+    line-height: 1.05;
+    color:#211C15;
+    text-shadow: 0 2px 24px rgba(255,255,255,0.35);
+  }
+  .hero-content p{
+    margin-top:20px;
+    font-size: 16px;
+    letter-spacing:0.02em;
+    color:#3A3324;
+  }
+  .hero-content .btn{ margin-top: 34px; }
+  .scroll-cue{
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    z-index:2; display:flex; flex-direction:column; align-items:center; gap:10px;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#3A3324;
+  }
+  .scroll-cue .dot{
+    width:22px; height:34px; border:1px solid currentColor; border-radius:14px;
+    position:relative;
+  }
+  .scroll-cue .dot::after{
+    content:''; position:absolute; top:6px; left:50%; width:3px; height:6px;
+    background:currentColor; border-radius:2px; transform:translateX(-50%);
+    animation: scrollDot 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollDot{ 0%{ opacity:1; top:6px;} 60%{opacity:0; top:16px;} 100%{opacity:0; top:6px;} }
+
+  .split{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items:center;
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+  .split .media{ aspect-ratio: 4/3.4; border-radius: var(--radius); overflow:hidden; }
+  .split h2{ font-size: 34px; margin-bottom:18px; }
+  .split p{ color: var(--ink-soft); font-size:15px; max-width: 46ch; }
+  .split .eyebrow{ margin-bottom:10px; display:block; }
+  .split .link-arrow{ margin-top:22px; }
+  .split.reverse{ direction: rtl; }
+  .split.reverse > *{ direction: ltr; }
+
+  .band{ background: var(--sand); padding: 88px 0; text-align:center; }
+  .band h2{ font-size:30px; max-width:620px; margin:0 auto 14px; }
+  .band p.lead{ color:var(--ink-soft); max-width:520px; margin:0 auto; }
+
+  .products-strip{
+    display:grid; grid-template-columns: repeat(3,1fr); gap:28px; margin-top:56px;
+  }
+  .prod-card{ text-align:left; background:var(--bone); border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); }
+  .prod-card .media{ aspect-ratio: 5/4; }
+  .prod-card .info{ padding: 18px 20px 22px; display:flex; justify-content:space-between; align-items:baseline; }
+  .prod-card h3{ font-size:17px; }
+  .prod-card .price{ font-family:var(--sans); font-size:14px; color:var(--ink-soft); }
+
+  @media (max-width: 860px){
+    .split{ grid-template-columns:1fr; gap:32px; padding-top:64px; padding-bottom:64px; }
+    .split.reverse{ direction:ltr; }
+    .products-strip{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav transparent">
+  <div class="nav-inner">
+    <a class="logo" href="index.html">Palm &amp; Weave</a>
+    <div class="nav-links">
+      <a href="shop.html">Shop</a>
+      <a href="story.html#about">About</a>
+      <a href="story.html#craftsmanship">Craftsmanship</a>
+      <a href="story.html" class="active">Sustainability</a>
+      <a href="story.html#journal">Journal</a>
+      <a href="#">Account / Cart</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"></button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-photo ph-sunroom"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-content">
+    <h1>Sustainable Sleep,<br>Naturally Crafted.</h1>
+    <p>Handwoven by artisans for ultimate comfort and conscious living.</p>
+    <a href="shop.html" class="btn btn-dark">Shop the Collection</a>
+  </div>
+  <div class="scroll-cue"><span class="dot"></span> Scroll to Explore</div>
+</header>
+
+<section class="container split reveal">
+  <div class="media ph-weave"></div>
+  <div>
+    <span class="eyebrow">Materials &amp; Craft</span>
+    <h2>The Artisanal Weave</h2>
+    <p>Every fiber of our cots is meticulously handwoven by skilled artisans using traditional techniques, resulting in a unique, breathable, and resilient surface that adapts to your body. Experience the touch of nature.</p>
+    <a href="story.html" class="link-arrow">Learn about our process
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="container split reverse reveal">
+  <div class="media ph-interior"></div>
+  <div>
+    <span class="eyebrow">Design Philosophy</span>
+    <h2>Built for Stillness</h2>
+    <p>Minimal lines, warm walnut and teak, and hand-tied fiber seating designed to disappear into calm interiors — indoors or out. Each cot is engineered to last generations, not seasons.</p>
+    <a href="shop.html" class="link-arrow">Explore the collection
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="band reveal">
+  <div class="container">
+    <span class="eyebrow">Featured</span>
+    <h2>This Season's Weave</h2>
+    <p class="lead">A small selection from the current collection — full range available in the shop.</p>
+    <div class="products-strip">
+      <a class="prod-card" href="product.html">
+        <div class="media ph-beach"></div>
+        <div class="info"><h3>The Oasis Cot</h3><span class="price">$450</span></div>
+      </a>
+      <a class="prod-card" href="product.html">
+        <div class="media ph-dark-product"></div>
+        <div class="info"><h3>The Horizon Cot</h3><span class="price">$2,450</span></div>
+      </a>
+      <a class="prod-card" href="product.html">
+        <div class="media ph-palms"></div>
+        <div class="info"><h3>The Canopy Cot</h3><span class="price">$620</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="container stats-row reveal">
+  <div>
+    <div class="num">8,500+</div>
+    <div class="label">Gallons of Water Saved</div>
+  </div>
+  <div>
+    <div class="num">1,200+</div>
+    <div class="label">CO₂ Offset (kg)</div>
+  </div>
+  <div>
+    <div class="num">100%</div>
+    <div class="label">Artisan Handwoven</div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html" style="color:var(--bone)">Palm &amp; Weave</a>
+        <p>Handwoven cots and daybeds, crafted by artisans from sustainably harvested palm fiber and teak wood.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Potara</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Craftsmanship</h4>
+        <ul>
+          <li><a href="story.html#about">About</a></li>
+          <li><a href="story.html#craftsmanship">Craftsmanship</a></li>
+          <li><a href="story.html">Sustainability</a></li>
+          <li><a href="story.html#journal">Journal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+18664227390">+1 866-422-7390</a></li>
+          <li><a href="mailto:serene@palmandweave.com">serene@palmandweave.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Palm &amp; Weave. All rights reserved.</span>
+      <div class="socials">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.6h2.6l.4-3h-3v-1.9c0-.87.24-1.46 1.5-1.46h1.6V4.34C15.9 4.24 15 4.16 14 4.16c-2.4 0-4 1.46-4 4.14v2.3H7.4v3H10V21h3.5z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10.5 9.5l4.5 2.5-4.5 2.5z" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

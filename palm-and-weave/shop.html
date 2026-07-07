@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — Palm &amp; Weave</title>
+<meta name="description" content="Browse the full Palm & Weave collection of handwoven cots and daybeds.">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .shop-hero{
+    position:relative;
+    min-height: 42vh;
+    display:flex; align-items:center;
+    color:#241F17;
+    overflow:hidden;
+  }
+  .shop-hero .hero-photo{ position:absolute; inset:0; }
+  .shop-hero .frond-deco{
+    position:absolute; top:-10%; right:-4%; width:340px; color:#3c4a2f; opacity:0.55;
+    transform: rotate(18deg);
+  }
+  .shop-hero-content{ position:relative; z-index:2; max-width:640px; padding: 0 32px; }
+  .shop-hero-content h1{ font-size: clamp(28px,4vw,44px); line-height:1.15; }
+  .shop-hero-content p.lead{ margin-top:14px; color:#3A3324; font-size:15px; }
+
+  .shop-layout{
+    display:grid;
+    grid-template-columns: 230px 1fr;
+    gap: 48px;
+    padding-top: 56px;
+    padding-bottom: 100px;
+    align-items:start;
+  }
+  .filters h4{
+    font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color: var(--ink-soft); margin: 26px 0 14px;
+  }
+  .filters h4:first-child{ margin-top:0; }
+  .filter-opt{ display:flex; align-items:center; gap:10px; margin-bottom:10px; font-size:14px; }
+  .filter-opt input{ accent-color: var(--sage-deep); width:15px; height:15px; }
+  .filter-icon{ width:22px; height:22px; color: var(--sage-deep); margin-bottom:6px; }
+
+  .product-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+  .product-card{
+    background: var(--bone);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow:hidden;
+    cursor:pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .product-card:hover{ transform: translateY(-3px); box-shadow: 0 14px 30px rgba(42,38,33,0.10); }
+  .product-card .media{ aspect-ratio: 4/3; position:relative; }
+  .product-card .media .qv-hint{
+    position:absolute; inset:auto 0 0 0; padding:10px; text-align:center;
+    background:rgba(23,20,15,0.62); color:var(--bone);
+    font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+    opacity:0; transition: opacity .2s ease, background .2s ease;
+    border:none; width:100%; font-family:inherit; font-weight:600;
+  }
+  .product-card .media .qv-hint:hover{ background:rgba(23,20,15,0.85); }
+  .product-card:hover .qv-hint{ opacity:1; }
+  .product-card .info{ padding:16px 18px 20px; display:flex; justify-content:space-between; align-items:baseline; }
+  .product-card h3{ font-size:16px; }
+  .product-card .price{ font-size:14px; color:var(--ink-soft); }
+
+  /* Quick view modal */
+  .quickview-modal{
+    position:fixed; inset:0; z-index:200;
+    display:flex; align-items:center; justify-content:center;
+    background: rgba(23,20,15,0.55);
+    opacity:0; pointer-events:none;
+    transition: opacity .25s ease;
+    padding: 24px;
+  }
+  .quickview-modal.open{ opacity:1; pointer-events:auto; }
+  .qv-box{
+    background: var(--bone);
+    max-width: 640px; width:100%;
+    display:grid; grid-template-columns: 1fr 1fr;
+    border-radius: var(--radius);
+    overflow:hidden;
+    position:relative;
+  }
+  .qv-box .qv-photo{ aspect-ratio: 1/1; }
+  .qv-body{ padding: 32px 30px; }
+  .qv-body .qv-title{ font-size:22px; margin-bottom:10px; }
+  .qv-body .qv-price{ font-size:16px; color: var(--ink-soft); margin-bottom:16px; display:block; }
+  .qv-body .qv-desc{ font-size:14px; color:var(--ink-soft); margin-bottom:24px; display:block; }
+  .qv-close{
+    position:absolute; top:14px; right:14px; z-index:2;
+    width:30px; height:30px; border-radius:50%;
+    background: rgba(251,247,238,0.85); border:none;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  @media (max-width: 900px){
+    .shop-layout{ grid-template-columns:1fr; }
+    .product-grid{ grid-template-columns: repeat(2,1fr); }
+    .qv-box{ grid-template-columns:1fr; }
+  }
+  @media (max-width: 560px){
+    .product-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html">Palm &amp; Weave</a>
+    <div class="nav-links">
+      <a href="shop.html" class="active">Shop</a>
+      <a href="story.html#about">About</a>
+      <a href="story.html#craftsmanship">Craftsmanship</a>
+      <a href="story.html">Sustainability</a>
+      <a href="story.html#journal">Journal</a>
+      <a href="#">Account / Cart</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"></button>
+  </div>
+</nav>
+
+<header class="shop-hero ph-palms">
+  <svg class="frond-deco" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M100 190 C95 130 90 70 100 10"/>
+    <path d="M100 60 C60 40 30 20 10 5"/>
+    <path d="M100 80 C55 75 15 75 5 90"/>
+    <path d="M100 100 C60 110 25 130 15 150"/>
+    <path d="M100 60 C140 40 170 20 190 5"/>
+    <path d="M100 80 C145 75 185 75 195 90"/>
+    <path d="M100 100 C140 110 175 130 185 150"/>
+  </svg>
+  <div class="shop-hero-content">
+    <span class="eyebrow">Collection Gallery</span>
+    <h1>Sustainable Slumber.<br>From the Palms of the Tropics.</h1>
+    <p class="lead">Discover our eco-harvesting journey, and shop the full range of handwoven cots and daybeds.</p>
+  </div>
+</header>
+
+<div class="container shop-layout">
+  <form class="filters">
+    <h4>Materials</h4>
+    <label class="filter-opt"><input type="checkbox" value="palm-fiber"> Palm Fiber</label>
+    <label class="filter-opt"><input type="checkbox" value="teak-wood"> Teak Wood</label>
+
+    <h4>Sizes</h4>
+    <label class="filter-opt"><input type="checkbox" value="twin"> Twin</label>
+    <label class="filter-opt"><input type="checkbox" value="full"> Full</label>
+    <label class="filter-opt"><input type="checkbox" value="queen"> Queen</label>
+    <label class="filter-opt"><input type="checkbox" value="king"> King</label>
+  </form>
+
+  <div class="product-grid">
+    <a class="product-card" href="product.html" data-materials="palm-fiber" data-sizes="twin full"
+       data-name="The Oasis Cot" data-price="$450" data-photo="ph-beach"
+       data-desc="A sun-bleached silhouette inspired by shoreline living — handwoven palm fiber over a teak frame.">
+      <div class="media ph-beach"><button type="button" class="qv-hint" data-quickview>Quick View</button></div>
+      <div class="info"><h3>The Oasis Cot</h3><span class="price">$450</span></div>
+    </a>
+
+    <a class="product-card" href="product.html" data-materials="palm-fiber teak-wood" data-sizes="queen"
+       data-name="The Serenity Cot" data-price="$580" data-photo="ph-interior"
+       data-desc="Our best-selling silhouette — quietly refined, endlessly comfortable, built for everyday rest.">
+      <div class="media ph-interior"><button type="button" class="qv-hint" data-quickview>Quick View</button></div>
+      <div class="info"><h3>The Serenity Cot</h3><span class="price">$580</span></div>
+    </a>
+
+    <a class="product-card" href="product.html" data-materials="teak-wood" data-sizes="king"
+       data-name="The Canopy Cot" data-price="$620" data-photo="ph-palms"
+       data-desc="Draped in natural linen and framed by hand-carved teak posts, built for open-air rest.">
+      <div class="media ph-palms"><button type="button" class="qv-hint" data-quickview>Quick View</button></div>
+      <div class="info"><h3>The Canopy Cot</h3><span class="price">$620</span></div>
+    </a>
+
+    <a class="product-card" href="product.html" data-materials="palm-fiber" data-sizes="full queen"
+       data-name="The Zen Cot" data-price="$510" data-photo="ph-weave"
+       data-desc="Set among greenery, this cot pairs a tight basket-weave seat with a warm walnut base.">
+      <div class="media ph-weave"><button type="button" class="qv-hint" data-quickview>Quick View</button></div>
+      <div class="info"><h3>The Zen Cot</h3><span class="price">$510</span></div>
+    </a>
+
+    <a class="product-card" href="product.html" data-materials="palm-fiber teak-wood" data-sizes="twin"
+       data-name="The Riviera Cot" data-price="$495" data-photo="ph-sunroom"
+       data-desc="Compact and light, the Riviera is our most portable cot — ideal for smaller spaces.">
+      <div class="media ph-sunroom"><button type="button" class="qv-hint" data-quickview>Quick View</button></div>
+      <div class="info"><h3>The Riviera Cot</h3><span class="price">$495</span></div>
+    </a>
+
+    <a class="product-card" href="product.html" data-materials="teak-wood" data-sizes="king"
+       data-name="The Horizon Cot" data-price="$2,450" data-photo="ph-dark-product"
+       data-desc="The flagship cot. Walnut, teak, or ebony frame with fully customizable fabric accents.">
+      <div class="media ph-dark-product"><button type="button" class="qv-hint" data-quickview>Quick View</button></div>
+      <div class="info"><h3>The Horizon Cot</h3><span class="price">$2,450</span></div>
+    </a>
+  </div>
+</div>
+
+<div class="quickview-modal">
+  <div class="qv-box">
+    <button class="qv-close" data-close-modal aria-label="Close">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="qv-photo ph-interior"></div>
+    <div class="qv-body">
+      <h3 class="qv-title">Product Name</h3>
+      <span class="qv-price">$0</span>
+      <span class="qv-desc"></span>
+      <a href="product.html" class="btn btn-dark">View Full Details</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <span>© 2026 Palm &amp; Weave. All rights reserved.</span>
+      <div class="footer-col" style="display:flex;gap:20px;">
+        <a href="index.html">About Palm &amp; Weave</a>
+        <a href="#">Contact</a>
+        <a href="story.html#journal">Journal</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
