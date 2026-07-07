@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Horizon Cot — Palm &amp; Weave</title>
+<meta name="description" content="The Horizon Cot: a handwoven statement piece in walnut, teak, or ebony, fully customizable.">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  body{ background: var(--near-black); color: var(--bone); }
+  .product-wrap{
+    display:grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 56px;
+    padding-top: 56px;
+    padding-bottom: 90px;
+    align-items:start;
+  }
+  .gallery{
+    position:relative;
+    aspect-ratio: 4/3;
+    border-radius: var(--radius);
+    overflow:hidden;
+    background: var(--near-black-2);
+  }
+  .gallery-slide{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transition: opacity .35s ease;
+  }
+  .gallery-slide.active{ opacity:1; }
+  .rotate-hint{
+    position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color: rgba(251,247,238,0.7);
+    display:flex; align-items:center; gap:8px;
+  }
+  .rotate-hint svg{ width:16px; height:16px; }
+  .badge-360{
+    position:absolute; top:16px; right:16px;
+    font-size:11px; letter-spacing:0.08em;
+    display:flex; align-items:center; gap:6px;
+    color: rgba(251,247,238,0.75);
+  }
+  .badge-360 svg{ width:16px; height:16px; }
+  .gallery-prev, .gallery-next{
+    position:absolute; top:50%; transform:translateY(-50%);
+    background:none; border:none; color: rgba(251,247,238,0.7);
+    width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+  }
+  .gallery-prev{ left:6px; } .gallery-next{ right:6px; }
+  .gallery-prev:hover, .gallery-next:hover{ color:var(--bone); }
+  .gallery-prev svg, .gallery-next svg{ width:22px; height:22px; }
+
+  .product-info h1{ font-size: 32px; line-height:1.1; margin-bottom:16px; }
+  .price-row{ margin-bottom: 22px; }
+  .price-row .price{ font-size:22px; }
+  .price-row .ship{ display:block; font-size:12px; color:#9C9686; margin-top:6px; }
+  .product-info .btn{ width:100%; margin-bottom:36px; }
+
+  .customize h4.section-label{
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    margin-bottom:18px; color:#B8B2A0;
+  }
+  .swatch-block{ margin-bottom:26px; }
+  .swatch-block .swatch-label-row{
+    display:flex; justify-content:space-between; font-size:12px;
+    color:#9C9686; margin-bottom:10px; letter-spacing:0.06em; text-transform:uppercase;
+  }
+  .swatch-group{ display:flex; gap:12px; }
+  .swatch{
+    width:100%;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    background:none; border:none; padding:0;
+  }
+  .swatch .chip{
+    width:100%; aspect-ratio:1/1; border-radius:3px;
+    border: 1.5px solid rgba(251,247,238,0.14);
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .swatch.selected .chip{ border-color: var(--gold); transform: translateY(-2px); }
+  .swatch .swatch-name{ font-size:11.5px; color:#C7C1B0; }
+
+  .accordion{ margin-top: 30px; border-top:1px solid var(--line-light); }
+  .accordion-item{ border-bottom:1px solid var(--line-light); }
+  .accordion-trigger{
+    width:100%; background:none; border:none; color:var(--bone);
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 20px 2px; font-size:13px; letter-spacing:0.1em; text-transform:uppercase;
+  }
+  .accordion-trigger svg{ width:14px; height:14px; color: var(--gold); transition: transform .2s ease; }
+  .accordion-item.open .accordion-trigger svg{ transform: rotate(180deg); }
+  .accordion-panel{
+    max-height:0; overflow:hidden; transition: max-height .3s ease;
+    font-size: 13.5px; color:#B8B2A0; line-height:1.7;
+  }
+  .accordion-item.open .accordion-panel{ max-height: 220px; }
+  .accordion-panel-inner{ padding: 0 2px 20px; }
+
+  @media (max-width: 900px){
+    .product-wrap{ grid-template-columns:1fr; gap:36px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav on-dark">
+  <div class="nav-inner">
+    <a class="logo" href="index.html">Palm &amp; Weave</a>
+    <div class="nav-links">
+      <a href="shop.html" class="active">Shop</a>
+      <a href="story.html#about">Our Story</a>
+      <a href="story.html">Sustainability</a>
+      <a href="#">Account</a>
+      <a href="#">Cart</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"></button>
+  </div>
+</nav>
+
+<div class="container product-wrap">
+  <div class="gallery">
+    <div class="gallery-slide active"><div class="media ph-dark-product" style="position:absolute;inset:0;"></div></div>
+    <div class="gallery-slide"><div class="media ph-wood" style="position:absolute;inset:0;"></div></div>
+    <div class="gallery-slide"><div class="media ph-weave" style="position:absolute;inset:0;"></div></div>
+
+    <span class="badge-360">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 1 1 3 6.2M4 12v5h5"/></svg>
+      360°
+    </span>
+    <button class="gallery-prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <button class="gallery-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+    <span class="rotate-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 4H6a2 2 0 0 0-2 2v3M15 4h3a2 2 0 0 1 2 2v3M9 20H6a2 2 0 0 1-2-2v-3M15 20h3a2 2 0 0 0 2-2v-3"/></svg>
+      Drag to Rotate
+    </span>
+  </div>
+
+  <div class="product-info">
+    <h1>THE HORIZON COT</h1>
+    <div class="price-row">
+      <span class="price">$2,450</span>
+      <span class="ship">Free Shipping &amp; Returns</span>
+    </div>
+    <button class="btn btn-gold" style="display:flex;">Crafted for You</button>
+
+    <div class="customize">
+      <h4 class="section-label">Customize Yours</h4>
+
+      <div class="swatch-block">
+        <div class="swatch-label-row"><span>Wood Finishes</span><span class="swatch-selected-label">Walnut</span></div>
+        <div class="swatch-group">
+          <button class="swatch selected" data-label="Walnut" data-paints=".gallery-slide.active .media" data-tint="linear-gradient(160deg,#6d4b30,#4a3220)">
+            <span class="chip ph-wood" style="background-image:none;background:linear-gradient(160deg,#6d4b30,#4a3220 60%,#3a2718)"></span>
+            <span class="swatch-name">Walnut</span>
+          </button>
+          <button class="swatch" data-label="Teak">
+            <span class="chip" style="background:linear-gradient(160deg,#a9773f,#7a5228)"></span>
+            <span class="swatch-name">Teak</span>
+          </button>
+          <button class="swatch" data-label="Ebony">
+            <span class="chip" style="background:linear-gradient(160deg,#2b2620,#0e0c0a)"></span>
+            <span class="swatch-name">Ebony</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="swatch-block">
+        <div class="swatch-label-row"><span>Fabric Accents</span><span class="swatch-selected-label-2">Natural Linen</span></div>
+        <div class="swatch-group">
+          <button class="swatch selected" data-label="Natural Linen">
+            <span class="chip ph-linen"></span>
+            <span class="swatch-name">Natural Linen</span>
+          </button>
+          <button class="swatch" data-label="Moss Green">
+            <span class="chip ph-moss"></span>
+            <span class="swatch-name">Moss Green</span>
+          </button>
+          <button class="swatch" data-label="Charcoal Silk">
+            <span class="chip ph-charcoal"></span>
+            <span class="swatch-name">Charcoal Silk</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-item open">
+        <button class="accordion-trigger">Technical Specs
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion-panel"><div class="accordion-panel-inner">
+          Dimensions: 84&quot; L × 32&quot; W × 14&quot; H · Weight capacity: 400 lbs · Frame: kiln-dried hardwood, mortise &amp; tenon joinery · Seating: hand-tied palm fiber cord.
+        </div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">Material Origin
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="accordion-panel"><div class="accordion-panel-inner">
+          Wood sourced from FSC-certified teak and walnut plantations. Palm fiber hand-harvested and woven by artisan cooperatives in coastal Kerala.
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none;padding-top:0;">
+      <div class="footer-col" style="display:flex;gap:20px;">
+        <a href="shop.html">Shop</a>
+        <a href="story.html#about">Our Story</a>
+        <a href="#">Links</a>
+        <a href="#">Bomat</a>
+        <a href="story.html#journal">Blog</a>
+      </div>
+      <div class="socials">
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.6h2.6l.4-3h-3v-1.9c0-.87.24-1.46 1.5-1.46h1.6V4.34C15.9 4.24 15 4.16 14 4.16c-2.4 0-4 1.46-4 4.14v2.3H7.4v3H10V21h3.5z"/></svg></a>
+        <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4l7.5 9.5L4.3 20H6l6-6.7 4.6 6.7H20l-7.8-9.9L19.6 4H18l-5.5 6-4.1-6H4z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="5.5" width="19" height="13" rx="3"/><path d="M10.5 9.5l4.5 2.5-4.5 2.5z" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
